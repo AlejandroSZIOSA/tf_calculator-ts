@@ -1,7 +1,11 @@
 import React from "react";
 
 const ResultsPage: React.FC = () => {
-  return <div>RESULTS PAGE</div>;
+  return (
+    <>
+      <h1>RESULTS PAGE</h1>
+    </>
+  );
 };
 
 export default ResultsPage;

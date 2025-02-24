@@ -6,7 +6,9 @@ const CalculatorRootLayout: React.FC = () => {
   return (
     <>
       <CalculatorNavigation />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };

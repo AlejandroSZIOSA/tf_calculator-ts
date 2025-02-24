@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "user-calculator",
+    path: "calculator",
     element: <CalculatorRootLayout />,
     children: [
       { index: true, element: <CalculatorPage /> },
