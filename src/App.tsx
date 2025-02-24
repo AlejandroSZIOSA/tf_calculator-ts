@@ -1,14 +1,10 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-
+import { USER_TEST } from "./data/dummy-data";
 function App() {
-  const [count, setCount] = useState(0);
-
+  //console.log(USER_TEST);
   return (
     <>
-      <div> HOME PAGE</div>
+      <div> APP PAGE</div>
     </>
   );
 }
