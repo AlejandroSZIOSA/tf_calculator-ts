@@ -1,4 +1,5 @@
-import { Category, Product, User } from "../types/dummy-data";
+import { Category, Product } from "../types/dummy-data";
+import User from "../models/user";
 
 export const CATEGORIES: Category[] = [
   { id: 1, name: "cat1", productsIds: [1, 2, 3] },
