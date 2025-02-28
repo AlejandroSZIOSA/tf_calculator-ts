@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <CalculatorPage /> },
       {
-        index: true,
+        /* index: true, */
         path: "results",
         element: <ResultsPage />,
       },
