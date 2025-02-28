@@ -13,6 +13,7 @@ const CalculatorNavigation: React.FC = () => {
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
+              end
             >
               Home
             </NavLink>

@@ -19,8 +19,6 @@
 .list a:hover,
 .list a.active {
   color: var(--color-primary-800);
-}
-
-.active {
   background-color: rgb(132, 132, 132);
+  /* use end in the JSX code */
 }
