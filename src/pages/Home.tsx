@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useUser_Ctx } from "../store/user-Context";
-import HomeHeader from "../components/HomeHeader";
+import HomeHeader from "../components/navigation/HomeHeader";
 
 const HomePage: React.FC = () => {
   const { user_Token, user_data } = useUser_Ctx();

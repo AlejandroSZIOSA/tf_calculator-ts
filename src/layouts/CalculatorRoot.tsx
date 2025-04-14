@@ -1,5 +1,5 @@
 import React from "react";
-import CalculatorHeader from "../components/CalculatorHeader";
+import CalculatorHeader from "../components/navigation/CalculatorHeader";
 import { Outlet } from "react-router-dom";
 
 const CalculatorRootLayout: React.FC = () => {
