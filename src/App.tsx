@@ -7,6 +7,7 @@ import CalculatorRootLayout from "./layouts/CalculatorRoot";
 import CalculatorPage from "./pages/Calculator";
 import ResultsPage from "./pages/Results";
 import LoginPage from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "login", element: <LoginPage /> },
+      { path: "signup", element: <Signup /> },
     ],
   },
   {

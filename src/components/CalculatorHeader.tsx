@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import classes from "./MainNavigation.module.css";
+import classes from "./CalculatorHeader.module.css";
 
-const MainNavigation: React.FC = () => {
+const CalculatorHeader: React.FC = () => {
   return (
     <header className={classes.header}>
       <nav>
@@ -18,20 +18,10 @@ const MainNavigation: React.FC = () => {
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              Login
-            </NavLink>
-          </li>
         </ul>
       </nav>
     </header>
   );
 };
 
-export default MainNavigation;
+export default CalculatorHeader;

@@ -1,11 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import MainNavigation from "../components/MainNavigation";
+import MainHeader from "../components/MainHeader";
 
 const RootLayout: React.FC = () => {
   return (
     <>
-      <MainNavigation />
+      <MainHeader />
       <main>
         <Outlet />
       </main>
