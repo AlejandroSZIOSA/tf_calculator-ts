@@ -8,7 +8,7 @@ const NavBar: React.FC = () => {
       <ul className={classes.list}>
         <li>
           <NavLink
-            to="/login"
+            to="/user/login"
             className={({ isActive }) =>
               isActive ? classes.active : undefined
             }
@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
         </li>
         <li>
           <NavLink
-            to="/signup"
+            to="/user/signup"
             className={({ isActive }) =>
               isActive ? classes.active : undefined
             }

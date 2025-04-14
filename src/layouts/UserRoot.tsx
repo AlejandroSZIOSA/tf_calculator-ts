@@ -1,11 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import MainHeader from "../components/MainHeader";
+import UserHeader from "../components/UserHeader";
 
-const RootLayout: React.FC = () => {
+const UserRootLayout: React.FC = () => {
   return (
     <>
-      <MainHeader />
+      <UserHeader />
       <main>
         <Outlet />
       </main>
@@ -13,4 +13,4 @@ const RootLayout: React.FC = () => {
   );
 };
 
-export default RootLayout;
+export default UserRootLayout;

@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 
-import RootLayout from "./layouts/Root";
+import UserRootLayout from "./layouts/UserRoot";
 import HomePage from "./pages/Home";
 import CalculatorRootLayout from "./layouts/CalculatorRoot";
 import CalculatorPage from "./pages/Calculator";
@@ -12,7 +12,12 @@ import Signup from "./pages/auth/Signup";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    index: true,
+    element: <HomePage />,
+  },
+  {
+    path: "/user",
+    element: <UserRootLayout />,
     children: [
       { index: true, element: <HomePage /> },
       { path: "login", element: <LoginPage /> },

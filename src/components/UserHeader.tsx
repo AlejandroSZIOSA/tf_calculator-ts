@@ -1,11 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import classes from "./MainHeader.module.css";
-import NavBar from "./NavBar";
+import classes from "./UserHeader.module.css";
 
-const MainHeader: React.FC = () => {
+const UserHeader: React.FC = () => {
   return (
-    <header className={classes.MainHeader}>
+    <header className={classes.UserHeader}>
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? classes.active : undefined)}
@@ -13,9 +12,8 @@ const MainHeader: React.FC = () => {
       >
         Home
       </NavLink>
-      <NavBar />
     </header>
   );
 };
 
-export default MainHeader;
+export default UserHeader;
