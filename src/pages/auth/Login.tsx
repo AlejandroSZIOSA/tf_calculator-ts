@@ -4,6 +4,7 @@ import { useCalculator_Ctx } from "../../store/calculator-Context";
 
 import { get } from "../../utils/http";
 import { useUser_Ctx } from "../../store/user-Context";
+import LoginForm from "../../components/forms/LoginForm";
 
 const TEST_TOKEN = import.meta.env.VITE_TEST_TOKEN;
 
@@ -75,10 +76,13 @@ const LoginPage: React.FC = () => {
     set_Login_User("TOKEN");
   }
 
+  function handleUserData(email: string, password: string) {}
+
   console.log(products);
   return (
     <>
       <h1>Login Page</h1>
+      <LoginForm handleUserData={handleUserData} />
       <button onClick={testToken}>Login</button>
       <button onClick={() => set_LogOut_User()}>Log Out</button>
     </>
