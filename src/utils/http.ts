@@ -4,7 +4,7 @@ export async function get<T>(url: string, token: string) {
   const response = await fetch(url, {
     headers: {
       method: "GET",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token as string}`, //Fix
       "Content-Type": "application/json",
     },
   });
@@ -29,7 +29,7 @@ export async function post<T>(url: string, user: Credentials) {
   });
 
   if (!response.ok) {
-    throw new Error("fail to fetch data");
+    throw new Error("fail to login User");
   }
 
   const data = response.json() as unknown; //"as unknown" no get error :) use It!

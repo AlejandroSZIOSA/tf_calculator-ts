@@ -1,5 +1,6 @@
-import { useRef, type FormEvent } from "react";
+import { useRef, type FormEvent, useState, ReactNode } from "react";
 import { post } from "../../utils/http";
+import ENDPOINTS from "../../utils/constants";
 
 type LoginFormProps = {
   handleUserData: (token: string) => void;
@@ -10,58 +11,101 @@ type Data = {
   userId: string;
 };
 
+type User = {
+  email: string;
+  password: string;
+};
+
 export default function LoginForm({ handleUserData }: LoginFormProps) {
-  const email =
-    useRef<HTMLInputElement>(
-      null
-    ); /* fix error with null and the added generic value */
-  const password = useRef<HTMLInputElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  async function loginUser(email: string, password: string) {
-    /* setIsFetching(true); */
-    const user = { email, password };
+  const email = useRef<HTMLInputElement>(null); /* fix */
+  const password = useRef<HTMLInputElement>(null); /* fix */
+
+  const [isPasswordShowing, setIsPasswordShowing] = useState(false);
+  const [areInputsLocked, setAreInputsLocked] = useState(false);
+
+  async function handleLoginUser(user: User) {
+    setError(null);
+    setIsLoading(true);
     try {
-      const data = (await post<Data>(
-        "http://localhost:8081/auth/login",
-        user
-      )) as Data;
-
+      const data = (await post<Data>(ENDPOINTS.POST_USER, user)) as Data;
       const token: string = data.token;
-      console.log(token);
+      /* console.log(token); */
       handleUserData(token);
-      /*  setFetchedPosts(blogPosts); */
     } catch (error) {
-      //3.5 using instanceof typescrypt validate type error message :)
+      //using instanceof that validate type error message :)
       if (error instanceof Error) {
-        /*  setError(error.message); */
+        setError(error.message);
       }
+    } finally {
+      setIsLoading(false);
     }
-    /*  setIsFetching(false); */
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    /* new FormData(event.currentTarget); //Uses Generic HTMLFormElement */
     const enteredEmail = email.current!.value;
     const enteredPassword = password.current!.value;
-
-    event.currentTarget.reset(); //reset the form :)
-    loginUser(enteredEmail, enteredPassword);
+    const user: User = { email: enteredEmail, password: enteredPassword };
+    //event.currentTarget.reset(); //reset the form
+    handleLoginUser(user);
   }
+
+  const toggleLock = () => setAreInputsLocked(!areInputsLocked);
+
+  const toggleShowPassword = () => setIsPasswordShowing(!isPasswordShowing);
+
+  //messages JSX conditionals
+  let content: ReactNode;
+
+  if (isLoading) {
+    content = <p>Login User...</p>;
+  }
+
+  if (error) {
+    content = <p>Error: {error}</p>;
+  }
+
   return (
-    /* can use an arrow fn if stand alone */
-    <form onSubmit={handleSubmit}>
-      <p>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" name="email" ref={email} />
-      </p>
-      <p>
-        <label htmlFor="password">Password</label>
-        <input id="password" type="text" name="password" ref={password} />
-      </p>
-      <p>
-        <button type="submit">Add Goal</button>
-      </p>
-    </form>
+    <div>
+      {content}
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column" }}
+      >
+        <input
+          placeholder="Email"
+          id="email"
+          type="text"
+          name="email"
+          disabled={areInputsLocked} // check the login status here and disable the button accordingly
+          ref={email}
+        />
+        <div>
+          <input
+            placeholder="Password"
+            id="password"
+            type={isPasswordShowing ? "text" : "password"}
+            name="password"
+            disabled={areInputsLocked} // check the login status here and disable the button accordingly  // fix: use useRef here to fix this error.  This is because useRef creates a mutable ref object that can be updated multiple times during the component's rendering phase. It's useful when some value needs to be referenced in the component's render function, but needs to be changed during updates.
+            ref={password}
+          />
+          <button type="button" onClick={toggleShowPassword}>
+            {!isPasswordShowing ? "Show" : "Hide"}
+          </button>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <button type="button" onClick={toggleLock}>
+            {!areInputsLocked ? "Lock" : "Unlock"}
+          </button>
+          <button type="submit" disabled={areInputsLocked}>
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }

@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
-import User from "../../models/user";
-import { useCalculator_Ctx } from "../../store/calculator-Context";
-
+import React, { useState, type ReactNode, useEffect } from "react";
 import { get } from "../../utils/http";
+import ENDPOINTS from "../../utils/constants";
 import { useUser_Ctx } from "../../store/user-Context";
+
 import LoginForm from "../../components/forms/LoginForm";
-
-const TEST_TOKEN = import.meta.env.VITE_TEST_TOKEN;
-
-const USER_TEST = new User("user", "123");
 
 //Data From Backend
 type RawData = {
@@ -30,32 +25,25 @@ export type Product = {
 };
 
 const LoginPage: React.FC = () => {
-  /* const { isUser_Login, set_Login_User, set_LogOut_User } = useCalculator_Ctx(); */
-
   const { set_Login_User, add_User_data } = useUser_Ctx();
-
-  const [products, setProducts] = useState<Product[]>();
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
-  /* console.log(USER_TEST);
-  console.log(isUser_Login); */
+  function handleUserData(token: string) {
+    if (token) {
+      set_Login_User(token); //Ctx
+      fetchProducts(token);
+    }
+  }
 
-  //Fetching data with token
-  // "https://jsonplaceholder.typicode.com/posts"
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  async function fetchProducts() {
+  async function fetchProducts(token: string) {
     try {
-      const data = (await get<RawData>(
-        "http://localhost:8081/seed/seeds",
-        TEST_TOKEN
-      )) as RawData;
-
+      setMessage(null);
+      setError(null);
+      setIsLoading(true);
+      const data = (await get<RawData>(ENDPOINTS.GET_SEEDS, token)) as RawData;
       const { seeds } = data;
-
-      //Convert and extract the fetched data from the backend, to the data will frontend app will use It
       const extractedData: Product[] = seeds.map((product) => {
         return {
           id: product.id,
@@ -63,29 +51,38 @@ const LoginPage: React.FC = () => {
           weightPerSquareMeter: product.weightPerSquareMeter,
         };
       });
-      setProducts(extractedData);
-      add_User_data(extractedData);
+      add_User_data(extractedData); //Ctx
+      setMessage("Data fetched successfully");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
-  function testToken() {
-    set_Login_User("TOKEN");
+  //Loading or error message JSX conditionals
+  let content: ReactNode;
+
+  if (isLoading) {
+    content = <p>Loading Data...</p>;
   }
 
-  function handleUserData(email: string, password: string) {}
+  if (error) {
+    content = <p>Error: {error}</p>;
+  }
 
-  console.log(products);
+  if (message) {
+    content = <p>{message}</p>;
+  }
+
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <h1>Login Page</h1>
+      {content}
       <LoginForm handleUserData={handleUserData} />
-      <button onClick={testToken}>Login</button>
-      <button onClick={() => set_LogOut_User()}>Log Out</button>
-    </>
+    </div>
   );
 };
 

@@ -6,8 +6,9 @@ import HomeHeader from "../components/navigation/HomeHeader";
 const HomePage: React.FC = () => {
   const { user_Token, user_data } = useUser_Ctx();
 
-  console.log(user_Token);
   console.log(user_data);
+  console.log(user_Token);
+
   return (
     <>
       <HomeHeader />
