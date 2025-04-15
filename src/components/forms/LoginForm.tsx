@@ -23,8 +23,8 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
   const email = useRef<HTMLInputElement>(null); /* fix */
   const password = useRef<HTMLInputElement>(null); /* fix */
 
-  const [isPasswordShowing, setIsPasswordShowing] = useState(false);
-  const [areInputsLocked, setAreInputsLocked] = useState(false);
+  const [isPasswordShowing, setIsPasswordShowing] = useState<boolean>(false);
+  const [areInputsLocked, setAreInputsLocked] = useState<boolean>(false);
 
   async function handleLoginUser(user: User) {
     setError(null);
@@ -34,6 +34,7 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
       const token: string = data.token;
       /* console.log(token); */
       handleUserData(token);
+      setAreInputsLocked(true);
     } catch (error) {
       //using instanceof that validate type error message :)
       if (error instanceof Error) {
