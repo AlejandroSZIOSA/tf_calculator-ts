@@ -35,3 +35,23 @@ export async function post<T>(url: string, user: Credentials) {
   const data = response.json() as unknown; //"as unknown" no get error :) use It!
   return data as T; //Do not forget this :)
 }
+
+export async function put<T>(url: string, user: Credentials) {
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!response.ok) {
+    if (response.status === 422) {
+      throw new Error("User already exists");
+    }
+    throw new Error("fail to Sign Up User");
+  }
+
+  const data = response.json() as unknown; //"as unknown" no get error :) use It!
+  return data as T; //Do not forget this :)
+}

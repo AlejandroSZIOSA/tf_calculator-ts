@@ -1,5 +1,5 @@
 import { Category, Product } from "../types/dummy-data";
-import User from "../models/user";
+/* import User from "../models/user"; */
 
 export const CATEGORIES: Category[] = [
   { id: 1, name: "cat1", productsIds: [1, 2, 3] },
@@ -38,8 +38,9 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-export const USER_TEST: User = {
+/* export const USER_TEST: User = {
   id: "userTest",
   email: "user1",
   password: "123",
 };
+ */

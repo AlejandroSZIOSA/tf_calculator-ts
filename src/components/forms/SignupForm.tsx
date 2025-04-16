@@ -1,40 +1,33 @@
 import { useRef, type FormEvent, useState, type ReactNode } from "react";
-import { post } from "../../utils/http";
 import ENDPOINTS from "../../utils/constants";
-
-type LoginFormProps = {
-  handleUserData: (token: string) => void;
-};
+import { put } from "../../utils/http";
+import { type User } from "./LoginForm";
 
 type Data = {
-  token: string;
-  userId: string;
+  message: string;
 };
-
-export type User = {
-  email: string;
-  password: string;
-};
-
-export default function LoginForm({ handleUserData }: LoginFormProps) {
+export default function SignupForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
   const email = useRef<HTMLInputElement>(null); /* fix */
   const password = useRef<HTMLInputElement>(null); /* fix */
+  const confirmedPassword = useRef<HTMLInputElement>(null); /* fix */
 
   const [isPasswordShowing, setIsPasswordShowing] = useState<boolean>(false);
-  const [areInputsLocked, setAreInputsLocked] = useState<boolean>(false);
+  const [isConfirmPasswordShowing, setIsConfirmPasswordShowing] =
+    useState<boolean>(false);
 
-  async function handleLoginUser(user: User) {
+  async function handleSignUp(user: User) {
+    setMessage(null);
     setError(null);
     setIsLoading(true);
     try {
-      const data = (await post<Data>(ENDPOINTS.POST_USER, user)) as Data;
-      const token: string = data.token;
+      const data = (await put<Data>(ENDPOINTS.PUT_USER, user)) as Data;
+      const message: string = data.message;
       /* console.log(token); */
-      handleUserData(token);
-      setAreInputsLocked(true);
+      setMessage(message);
     } catch (error) {
       //using instanceof that validate type error message :)
       if (error instanceof Error) {
@@ -49,24 +42,34 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
     event.preventDefault();
     const enteredEmail = email.current!.value;
     const enteredPassword = password.current!.value;
+    const enteredConfirmPassword = confirmedPassword.current!.value;
+
+    //Confirm the password
+    if (enteredPassword !== enteredConfirmPassword) {
+      setError("Passwords does'nt not match");
+      return;
+    }
+
     const user: User = { email: enteredEmail, password: enteredPassword };
     //event.currentTarget.reset(); //reset the form
-    handleLoginUser(user);
+    handleSignUp(user);
   }
 
-  const toggleLock = () => setAreInputsLocked(!areInputsLocked);
-
   const toggleShowPassword = () => setIsPasswordShowing(!isPasswordShowing);
+  const toggleShowConfirmPassword = () =>
+    setIsConfirmPasswordShowing(!isConfirmPasswordShowing);
 
   //messages JSX conditionals
   let content: ReactNode;
 
   if (isLoading) {
-    content = <p>Login User...</p>;
+    content = <p>Sign Up new User...</p>;
   }
-
   if (error) {
     content = <p>Error: {error}</p>;
+  }
+  if (message) {
+    content = <p>{message}</p>;
   }
 
   return (
@@ -81,7 +84,6 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
           id="email"
           type="text"
           name="email"
-          disabled={areInputsLocked} // check the login status here and disable the button accordingly
           ref={email}
         />
         <div>
@@ -90,22 +92,27 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
             id="password"
             type={isPasswordShowing ? "text" : "password"}
             name="password"
-            disabled={areInputsLocked} // check the login status here and disable the button accordingly  // fix: use useRef here to fix this error.  This is because useRef creates a mutable ref object that can be updated multiple times during the component's rendering phase. It's useful when some value needs to be referenced in the component's render function, but needs to be changed during updates.
             ref={password}
+            required
           />
           <button type="button" onClick={toggleShowPassword}>
             {!isPasswordShowing ? "Show" : "Hide"}
           </button>
         </div>
-
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <button type="button" onClick={toggleLock}>
-            {!areInputsLocked ? "Lock" : "Unlock"}
-          </button>
-          <button type="submit" disabled={areInputsLocked}>
-            Login
+        <div>
+          <input
+            placeholder="Re-Password"
+            id="re-password"
+            type={isConfirmPasswordShowing ? "text" : "password"}
+            name="re-password"
+            ref={confirmedPassword}
+            required
+          />
+          <button type="button" onClick={toggleShowConfirmPassword}>
+            {!isConfirmPasswordShowing ? "Show" : "Hide"}
           </button>
         </div>
+        <button type="submit">Sign-Up</button>
       </form>
     </div>
   );

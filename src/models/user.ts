@@ -1,5 +1,5 @@
 //This is uses needs to "create" an "instance" of the  Object "User". -Create a new user
-class User {
+/* class User {
   id: string;
   email: string;
   password: string;
@@ -11,3 +11,4 @@ class User {
   }
 }
 export default User;
+ */
