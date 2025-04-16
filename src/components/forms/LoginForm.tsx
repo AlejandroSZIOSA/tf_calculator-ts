@@ -1,6 +1,13 @@
-import { useRef, type FormEvent, useState, type ReactNode } from "react";
+import {
+  useRef,
+  type FormEvent,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 import { post } from "../../utils/http";
 import ENDPOINTS from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 type LoginFormProps = {
   handleUserData: (token: string) => void;
@@ -26,7 +33,31 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
   const [isPasswordShowing, setIsPasswordShowing] = useState<boolean>(false);
   const [areInputsLocked, setAreInputsLocked] = useState<boolean>(false);
 
-  async function handleLoginUser(user: User) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    function checkLocalStorage() {
+      const userStored = localStorage.getItem("user");
+      const user = userStored ? JSON.parse(userStored) : null;
+      if (user) {
+        email.current!.value = user.email;
+        password.current!.value = user.password;
+        setAreInputsLocked(true);
+        /* console.log(user); */
+      }
+    }
+    checkLocalStorage();
+  }, []);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const enteredEmail = email.current!.value;
+    const enteredPassword = password.current!.value;
+    const user: User = { email: enteredEmail, password: enteredPassword };
+    loginUser(user);
+  }
+
+  async function loginUser(user: User) {
     setError(null);
     setIsLoading(true);
     try {
@@ -35,23 +66,14 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
       /* console.log(token); */
       handleUserData(token);
       setAreInputsLocked(true);
+      navigate("/"); //To Home page
     } catch (error) {
-      //using instanceof that validate type error message :)
       if (error instanceof Error) {
         setError(error.message);
       }
     } finally {
       setIsLoading(false);
     }
-  }
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const enteredEmail = email.current!.value;
-    const enteredPassword = password.current!.value;
-    const user: User = { email: enteredEmail, password: enteredPassword };
-    //event.currentTarget.reset(); //reset the form
-    handleLoginUser(user);
   }
 
   const toggleLock = () => setAreInputsLocked(!areInputsLocked);
@@ -93,7 +115,11 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
             disabled={areInputsLocked} // check the login status here and disable the button accordingly  // fix: use useRef here to fix this error.  This is because useRef creates a mutable ref object that can be updated multiple times during the component's rendering phase. It's useful when some value needs to be referenced in the component's render function, but needs to be changed during updates.
             ref={password}
           />
-          <button type="button" onClick={toggleShowPassword}>
+          <button
+            type="button"
+            disabled={areInputsLocked}
+            onClick={toggleShowPassword}
+          >
             {!isPasswordShowing ? "Show" : "Hide"}
           </button>
         </div>
@@ -102,9 +128,7 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
           <button type="button" onClick={toggleLock}>
             {!areInputsLocked ? "Lock" : "Unlock"}
           </button>
-          <button type="submit" disabled={areInputsLocked}>
-            Login
-          </button>
+          <button type="submit">Login</button>
         </div>
       </form>
     </div>

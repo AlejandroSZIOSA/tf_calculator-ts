@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { type Product } from "../pages/auth/Login";
 
 interface ContextTypes {
-  user_Token: string;
+  user_Token: string | null;
   set_Login_User: (v: string) => void;
   set_LogOut_User: () => void;
   user_data: Product[] | null | undefined;
@@ -17,11 +17,11 @@ const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   //Define states
-  const [userToken, setUserToken] = useState<string>("");
+  const [userToken, setUserToken] = useState<string | null>(null);
   const [userData, setUserData] = useState<Product[]>();
 
   const loginUser = (v: string) => setUserToken(v);
-  const logOutUser = () => setUserToken("");
+  const logOutUser = () => setUserToken(null);
 
   const addUserData = (v: Product[]) => setUserData(v);
   const removeUserData = () => setUserData(undefined);

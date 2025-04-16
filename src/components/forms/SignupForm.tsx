@@ -2,6 +2,7 @@ import { useRef, type FormEvent, useState, type ReactNode } from "react";
 import ENDPOINTS from "../../utils/constants";
 import { put } from "../../utils/http";
 import { type User } from "./LoginForm";
+import { useNavigate } from "react-router-dom";
 
 type Data = {
   message: string;
@@ -19,19 +20,25 @@ export default function SignupForm() {
   const [isConfirmPasswordShowing, setIsConfirmPasswordShowing] =
     useState<boolean>(false);
 
-  async function handleSignUp(user: User) {
+  const navigate = useNavigate();
+
+  async function signUpUser(newUser: User) {
     setMessage(null);
     setError(null);
     setIsLoading(true);
     try {
-      const data = (await put<Data>(ENDPOINTS.PUT_USER, user)) as Data;
+      const data = (await put<Data>(ENDPOINTS.PUT_USER, newUser)) as Data;
       const message: string = data.message;
-      /* console.log(token); */
       setMessage(message);
+
+      localStorage.setItem("user", JSON.stringify(newUser));
+
+      navigate("/user/login");
     } catch (error) {
       //using instanceof that validate type error message :)
       if (error instanceof Error) {
         setError(error.message);
+        //event.currentTarget.reset(); //reset the form
       }
     } finally {
       setIsLoading(false);
@@ -50,9 +57,9 @@ export default function SignupForm() {
       return;
     }
 
-    const user: User = { email: enteredEmail, password: enteredPassword };
+    const newUser: User = { email: enteredEmail, password: enteredPassword };
     //event.currentTarget.reset(); //reset the form
-    handleSignUp(user);
+    signUpUser(newUser);
   }
 
   const toggleShowPassword = () => setIsPasswordShowing(!isPasswordShowing);
