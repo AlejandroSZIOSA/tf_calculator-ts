@@ -4,7 +4,7 @@ import { useUser_Ctx } from "../store/user-Context";
 import HomeHeader from "../components/navigation/HomeHeader";
 
 const HomePage: React.FC = () => {
-  const { user_Token, user_data } = useUser_Ctx();
+  const { user_Token } = useUser_Ctx();
 
   /* console.log(user_data); */
   console.log(user_Token);

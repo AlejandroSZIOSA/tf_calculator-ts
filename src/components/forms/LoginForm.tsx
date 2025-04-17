@@ -63,14 +63,18 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
     try {
       const data = (await post<Data>(ENDPOINTS.POST_USER, user)) as Data;
       const token: string = data.token;
-      /* console.log(token); */
       handleUserData(token);
       setAreInputsLocked(true);
+      if (localStorage.length === 0) {
+        localStorage.setItem("user", JSON.stringify(user));
+      }
       navigate("/"); //To Home page
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
       }
+      localStorage.clear();
+      setAreInputsLocked(true);
     } finally {
       setIsLoading(false);
     }
@@ -114,6 +118,7 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
             name="password"
             disabled={areInputsLocked} // check the login status here and disable the button accordingly  // fix: use useRef here to fix this error.  This is because useRef creates a mutable ref object that can be updated multiple times during the component's rendering phase. It's useful when some value needs to be referenced in the component's render function, but needs to be changed during updates.
             ref={password}
+            required
           />
           <button
             type="button"

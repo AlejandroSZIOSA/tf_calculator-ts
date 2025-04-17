@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./NavBar.module.css";
 import { useUser_Ctx } from "../../store/user-Context";
 const NavBar: React.FC = () => {
-  const { set_LogOut_User } = useUser_Ctx();
+  const { set_LogOut_User, user_Token } = useUser_Ctx();
 
-  //Set logOut User status
   function handleLogOutUser() {
     set_LogOut_User();
     localStorage.clear();
   }
-  return (
-    <nav>
-      <ul className={classes.list}>
+
+  let content: React.ReactNode;
+
+  if (localStorage.length !== 0) {
+    content = (
+      <li>
+        <NavLink
+          to="/user/login"
+          className={({ isActive }) => (isActive ? classes.active : undefined)}
+        >
+          Login
+        </NavLink>
+      </li>
+    );
+  }
+
+  if (user_Token) {
+    content = (
+      <li>
+        <button onClick={handleLogOutUser}>Log Out</button>
+      </li>
+    );
+  }
+  if (!user_Token && localStorage.length === 0) {
+    content = (
+      <>
         <li>
           <NavLink
             to="/user/login"
@@ -33,10 +55,13 @@ const NavBar: React.FC = () => {
             Sign-up
           </NavLink>
         </li>
-        <li>
-          <button onClick={handleLogOutUser}>Log Out</button>
-        </li>
-      </ul>
+      </>
+    );
+  }
+
+  return (
+    <nav>
+      <ul className={classes.list}>{content}</ul>
     </nav>
   );
 };

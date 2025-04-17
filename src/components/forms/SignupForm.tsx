@@ -92,6 +92,7 @@ export default function SignupForm() {
           type="text"
           name="email"
           ref={email}
+          required
         />
         <div>
           <input
