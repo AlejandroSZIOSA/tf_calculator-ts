@@ -1,6 +1,4 @@
 export async function get<T>(url: string, token: string) {
-  /*  console.log(TEST_TOKEN); */
-
   const response = await fetch(url, {
     headers: {
       method: "GET",

@@ -13,7 +13,7 @@ type LoginFormProps = {
   handleUserData: (token: string) => void;
 };
 
-type Data = {
+export type Data = {
   token: string;
   userId: string;
 };

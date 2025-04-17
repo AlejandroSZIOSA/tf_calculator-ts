@@ -1,8 +1,10 @@
 import { useRef, type FormEvent, useState, type ReactNode } from "react";
 import ENDPOINTS from "../../utils/constants";
 import { put } from "../../utils/http";
-import { type User } from "./LoginForm";
+import { post } from "../../utils/http";
+import { type User, type Data as loginData } from "./LoginForm";
 import { useNavigate } from "react-router-dom";
+import { useUser_Ctx } from "../../store/user-Context";
 
 type Data = {
   message: string;
@@ -20,6 +22,8 @@ export default function SignupForm() {
   const [isConfirmPasswordShowing, setIsConfirmPasswordShowing] =
     useState<boolean>(false);
 
+  const { set_Login_User } = useUser_Ctx();
+
   const navigate = useNavigate();
 
   async function signUpUser(newUser: User) {
@@ -33,9 +37,16 @@ export default function SignupForm() {
 
       localStorage.setItem("user", JSON.stringify(newUser));
 
-      navigate("/user/login");
+      //Login new user automatic after the user was created
+      const loginData = (await post<loginData>(
+        ENDPOINTS.POST_USER,
+        newUser
+      )) as loginData;
+      const token: string = loginData.token;
+      set_Login_User(token);
+
+      navigate("/");
     } catch (error) {
-      //using instanceof that validate type error message :)
       if (error instanceof Error) {
         setError(error.message);
         //event.currentTarget.reset(); //reset the form
