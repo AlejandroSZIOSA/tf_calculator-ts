@@ -74,7 +74,7 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
         setError(error.message);
       }
       localStorage.clear();
-      setAreInputsLocked(true);
+      setAreInputsLocked(false);
     } finally {
       setIsLoading(false);
     }
@@ -105,10 +105,11 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
         <input
           placeholder="Email"
           id="email"
-          type="text"
+          type="email"
           name="email"
           disabled={areInputsLocked} // check the login status here and disable the button accordingly
           ref={email}
+          required
         />
         <div>
           <input

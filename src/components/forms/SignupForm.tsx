@@ -2,10 +2,11 @@ import { useRef, type FormEvent, useState, type ReactNode } from "react";
 import ENDPOINTS from "../../utils/constants";
 import { put } from "../../utils/http";
 import { post } from "../../utils/http";
-import { type User, type Data as loginData } from "./LoginForm";
+import { type User, type Data as LoginData } from "./LoginForm";
 import { useNavigate } from "react-router-dom";
 import { useUser_Ctx } from "../../store/user-Context";
 
+//backend returns this type of data in this case
 type Data = {
   message: string;
 };
@@ -31,17 +32,17 @@ export default function SignupForm() {
     setError(null);
     setIsLoading(true);
     try {
-      const data = (await put<Data>(ENDPOINTS.PUT_USER, newUser)) as Data;
+      const data = (await put<Data>(ENDPOINTS.PUT_NEW_USER, newUser)) as Data;
       const message: string = data.message;
       setMessage(message);
 
       localStorage.setItem("user", JSON.stringify(newUser));
 
       //Login new user automatic after the user was created
-      const loginData = (await post<loginData>(
+      const loginData = (await post<LoginData>(
         ENDPOINTS.POST_USER,
         newUser
-      )) as loginData;
+      )) as LoginData;
       const token: string = loginData.token;
       set_Login_User(token);
 
@@ -100,7 +101,7 @@ export default function SignupForm() {
         <input
           placeholder="Email"
           id="email"
-          type="text"
+          type="email"
           name="email"
           ref={email}
           required
