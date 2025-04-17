@@ -17,6 +17,7 @@ export async function get<T>(url: string, token: string) {
 
 type Credentials = { email: string; password: string };
 
+//TODO: ADD METHOD AS PROP
 export async function post<T>(url: string, user: Credentials) {
   const response = await fetch(url, {
     method: "POST",
