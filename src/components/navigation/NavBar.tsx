@@ -4,11 +4,7 @@ import { NavLink } from "react-router-dom";
 import classes from "./NavBar.module.css";
 const NavBar_Test: FC = () => {
   const { set_LogOut_User, user_Token } = useUser_Ctx();
-
   const [isOpen, setIsOpen] = useState(false);
-  /* const { user, log_Out } = useAuthUser();
-  const { clean_Questions_List } = useQuestions();
- */
 
   // Toggle the lock icon menu
   const toggleMenu = () => {

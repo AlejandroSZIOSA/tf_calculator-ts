@@ -12,7 +12,6 @@ const CalculatorHeader: React.FC = () => {
       >
         Home
       </NavLink>
-      <button>Log Out</button>
     </header>
   );
 };
