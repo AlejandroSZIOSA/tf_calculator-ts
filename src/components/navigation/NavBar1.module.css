@@ -1,0 +1,16 @@
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.list a {
+  text-decoration: none;
+  color: var(--color-primary-400);
+}
+
+.list a:hover,
+.list a.active {
+  color: var(--color-primary-800);
+  background-color: rgb(132, 132, 132);
+  /* use end in the JSX code */
+}

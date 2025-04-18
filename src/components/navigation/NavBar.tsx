@@ -1,69 +1,76 @@
-import { type FC, type ReactNode } from "react";
+import { type ReactNode, FC, useState } from "react";
+import { useUser_Ctx } from "../../store/user-Context";
 import { NavLink } from "react-router-dom";
 import classes from "./NavBar.module.css";
-import { useUser_Ctx } from "../../store/user-Context";
-const NavBar: FC = () => {
+const NavBar_Test: FC = () => {
   const { set_LogOut_User, user_Token } = useUser_Ctx();
 
+  const [isOpen, setIsOpen] = useState(false);
+  /* const { user, log_Out } = useAuthUser();
+  const { clean_Questions_List } = useQuestions();
+ */
+
+  // Toggle the lock icon menu
+  const toggleMenu = () => {
+    setIsOpen((open) => !open);
+  };
+
+  //A Function with JSX :)
+  function changeLockIcon(iconUrl: string) {
+    return (
+      <li className={classes.toggleMenu} onClick={toggleMenu}>
+        <img src={`${iconUrl}`} width={25} height={25} alt="lockIcon"></img>
+      </li>
+    );
+  }
+
+  //Set logOut User status
   function handleLogOutUser() {
     set_LogOut_User();
     localStorage.clear();
   }
 
-  let content: ReactNode;
+  //A Constant with JSX :)
+  const menuItems: ReactNode = (
+    <>
+      <NavLink to="/user/login" className={classes.NavLink}>
+        Login
+      </NavLink>
+      <NavLink to="/user/signUp" className={classes.NavLink}>
+        SignUp
+      </NavLink>
+    </>
+  );
 
-  if (localStorage.length !== 0) {
-    content = (
-      <li>
-        <NavLink
-          to="/user/login"
-          className={({ isActive }) => (isActive ? classes.active : undefined)}
-        >
-          Login
-        </NavLink>
-      </li>
-    );
-  }
+  let dynamicMenuItems: ReactNode;
 
-  if (user_Token) {
-    content = (
-      <li>
-        <button onClick={handleLogOutUser}>Log Out</button>
-      </li>
-    );
-  }
-  if (!user_Token && localStorage.length === 0) {
-    content = (
-      <>
-        <li>
-          <NavLink
-            to="/user/login"
-            className={({ isActive }) =>
-              isActive ? classes.active : undefined
-            }
-          >
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/user/signup"
-            className={({ isActive }) =>
-              isActive ? classes.active : undefined
-            }
-          >
-            Sign-up
-          </NavLink>
-        </li>
-      </>
-    );
+  if (!user_Token) {
+    dynamicMenuItems = <li>{menuItems}</li>;
+  } else {
+    dynamicMenuItems = <li onClick={handleLogOutUser}>LogOut</li>;
   }
 
   return (
-    <nav>
-      <ul className={classes.list}>{content}</ul>
+    <nav className={classes.navbar}>
+      <ul>
+        {/* calculator icon shows when user is login */}
+        {!user_Token
+          ? changeLockIcon("/src/assets/icons/lock.svg")
+          : changeLockIcon("/src/assets/icons/unlock.svg")}
+        <li
+          className={`${classes.menuItems} ${
+            isOpen ? classes.open : undefined
+          }`}
+        >
+          <ul>
+            {/* <li>{!user_Token && localStorage.length === 0 && menuItems}</li>
+            {user_Token && <li onClick={handleLogOutUser}>LogOut</li>} */}
+            {dynamicMenuItems}
+          </ul>
+        </li>
+      </ul>
     </nav>
   );
 };
 
-export default NavBar;
+export default NavBar_Test;
