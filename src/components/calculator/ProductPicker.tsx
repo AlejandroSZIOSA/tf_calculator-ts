@@ -1,17 +1,20 @@
 import { useState } from "react";
 import Picker from "react-mobile-picker";
+import classes from "./ProductPicker.module.css";
 
-type SelectionsType = {
+import { CATEGORIES } from "../../data/dummy-data";
+
+type CategoriesType = {
   [key: string]: string[];
 };
 
-const selections: SelectionsType = {
-  title: ["turf 1", "turf 2", "turf 3", "turf 4"],
+const categories: CategoriesType = {
+  category: ["turf 1", "turf 2", "turf 3", "turf 4"],
 };
 
 export default function ProductPicker() {
   const [pickerValue, setPickerValue] = useState({
-    title: "",
+    category: "",
   });
 
   return (
@@ -25,9 +28,9 @@ export default function ProductPicker() {
           width: "100%",
         }}
       >
-        {Object.keys(selections).map((name) => (
+        {Object.keys(categories).map((name) => (
           <Picker.Column key={name} name={name}>
-            {selections[name].map((option) => (
+            {categories[name].map((option) => (
               <Picker.Item key={option} value={option}>
                 {option}
               </Picker.Item>
@@ -35,7 +38,7 @@ export default function ProductPicker() {
           </Picker.Column>
         ))}
       </Picker>
-      <p>{pickerValue.title}</p>
+      <p>{pickerValue.category}</p>
     </>
   );
 }
