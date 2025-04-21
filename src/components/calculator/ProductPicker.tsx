@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Picker from "react-mobile-picker";
 import classes from "./ProductPicker.module.css";
 
@@ -8,15 +7,23 @@ type CategoriesType = {
   [key: string]: string[];
 };
 
-const categories: CategoriesType = {
-  category: ["turf 1", "turf 2", "turf 3", "turf 4"],
+type Picker = {
+  pickerValue: { category: string };
+  setPickerValue: (v: { category: string }) => void;
 };
 
-export default function ProductPicker() {
-  const [pickerValue, setPickerValue] = useState({
-    category: "",
-  });
+type ParentProps = {
+  usePicker: Picker;
+};
 
+const [cat1, cat2, cat3] = CATEGORIES; //Destructuring [{}]
+
+const categories: CategoriesType = {
+  category: [cat1.name, cat2.name, cat3.name],
+};
+
+export default function ProductPicker(usePicker: ParentProps) {
+  const { pickerValue, setPickerValue } = usePicker.usePicker;
   return (
     <>
       <Picker
