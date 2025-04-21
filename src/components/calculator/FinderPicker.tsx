@@ -16,7 +16,7 @@ const FinderPicker: FC<ParentProps> = ({ categorySelected }) => {
     product: "",
   });
 
-  const [names, setNames] = useState<string[] | undefined>(["hola"]);
+  const [names, setNames] = useState<string[] | undefined>([]);
 
   const { user_data } = useUser_Ctx();
 
@@ -28,9 +28,7 @@ const FinderPicker: FC<ParentProps> = ({ categorySelected }) => {
       if (test) {
         for (let i = 0; i < test.length; i++) {
           for (let j = 0; j < user_data!.length; j++) {
-            console.log(user_data![j].id);
-            console.log(test[i]);
-            if (test[i] == user_data![j].id) {
+            if (test[i] === user_data![j].id) {
               names.push(user_data![j].name);
               break;
             }
@@ -40,8 +38,7 @@ const FinderPicker: FC<ParentProps> = ({ categorySelected }) => {
         return names;
       }
     };
-
-    getProductNames();
+    setNames(getProductNames());
   }, [categorySelected]);
 
   const extractProductsIds = () => {
@@ -54,7 +51,7 @@ const FinderPicker: FC<ParentProps> = ({ categorySelected }) => {
   console.log(extractProductsIds());
 
   const products2: Product = {
-    product: ["cat1", "cat2", "cat3"],
+    product: names || [],
   };
 
   return (
@@ -63,7 +60,7 @@ const FinderPicker: FC<ParentProps> = ({ categorySelected }) => {
         value={pickerValue}
         onChange={setPickerValue}
         style={{
-          fontSize: "xxx-large",
+          fontSize: "x-large",
           background: "yellow",
           width: "100%",
         }}

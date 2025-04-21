@@ -2,12 +2,12 @@ import { Category, Product } from "../types/dummy-data";
 /* import User from "../models/user"; */
 
 export const CATEGORIES: Category[] = [
-  { id: 1, name: "cat1", productsIds: [1, 2, 3] },
-  { id: 2, name: "cat2", productsIds: [4, 5, 6] },
-  { id: 3, name: "cat3", productsIds: [7, 8, 9] },
+  { id: 1, name: "cat1", productsIds: ["s1", "s2", "s3"] },
+  { id: 2, name: "cat2", productsIds: ["s4", "s5", "s6"] },
+  { id: 3, name: "cat3", productsIds: ["s7", "s8", "s9"] },
 ];
 
-export const PRODUCTS: Product[] = [
+/* export const PRODUCTS: Product[] = [
   {
     id: 1,
     name: "product1",
@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
     price: 40,
     publishDate: "2022-04-01",
   },
-];
+]; */
 
 /* export const USER_TEST: User = {
   id: "userTest",

@@ -11,7 +11,7 @@ type RawData = {
 };
 
 type RawDataSeeds = {
-  id: number;
+  id: string;
   name: string;
   weightPerSquareMeter: number;
   createdAt: Date;
@@ -19,7 +19,7 @@ type RawDataSeeds = {
 
 //Data will uses in Frontend
 export type Product = {
-  id: number;
+  id: string;
   name: string;
   weightPerSquareMeter: number;
 };
