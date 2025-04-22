@@ -9,19 +9,21 @@ import { post } from "../../utils/http";
 import ENDPOINTS from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 
+import { type Data, type User } from "../../types/shared";
+
 type LoginFormProps = {
   handleUserData: (token: string) => void;
 };
 
-export type Data = {
+/* export type Data = {
   token: string;
   userId: string;
-};
+}; */
 
-export type User = {
+/* export type User = {
   email: string;
   password: string;
-};
+}; */
 
 export default function LoginForm({ handleUserData }: LoginFormProps) {
   const [isLoading, setIsLoading] = useState(false);

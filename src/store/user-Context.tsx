@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
-import { type Product } from "../pages/auth/Login";
-
+import { type Product } from "../types/shared";
 interface ContextTypes {
   user_Token: string | null;
   set_Login_User: (v: string) => void;

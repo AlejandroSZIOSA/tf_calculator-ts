@@ -3,6 +3,8 @@ import { get } from "../../utils/http";
 import ENDPOINTS from "../../utils/constants";
 import { useUser_Ctx } from "../../store/user-Context";
 
+import { type Product } from "../../types/shared";
+
 import LoginForm from "../../components/forms/LoginForm";
 
 //Data From Backend
@@ -18,11 +20,11 @@ type RawDataSeeds = {
 };
 
 //Data will uses in Frontend
-export type Product = {
+/* export type Product = {
   id: string;
   name: string;
   weightPerSquareMeter: number;
-};
+}; */
 
 const LoginPage: React.FC = () => {
   const { set_Login_User, add_User_data } = useUser_Ctx();

@@ -2,7 +2,7 @@ import { useRef, type FormEvent, useState, type ReactNode } from "react";
 import ENDPOINTS from "../../utils/constants";
 import { put } from "../../utils/http";
 import { post } from "../../utils/http";
-import { type User, type Data as LoginData } from "./LoginForm";
+import { type User, type Data as LoginData } from "../../types/shared";
 import { useNavigate } from "react-router-dom";
 import { useUser_Ctx } from "../../store/user-Context";
 
