@@ -1,4 +1,4 @@
-import { type ReactNode, FC, useState } from "react";
+import { type ReactNode, type FC, useState } from "react";
 import { useUser_Ctx } from "../../store/user-Context";
 import { NavLink } from "react-router-dom";
 import classes from "./NavBar.module.css";

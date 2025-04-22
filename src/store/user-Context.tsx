@@ -1,5 +1,12 @@
-import React, { useState, useContext } from "react";
+import {
+  type FC,
+  type ReactNode,
+  createContext,
+  useState,
+  useContext,
+} from "react";
 import { type Product } from "../types/shared";
+
 interface ContextTypes {
   user_Token: string | null;
   set_Login_User: (v: string) => void;
@@ -9,12 +16,10 @@ interface ContextTypes {
   remove_User_data: () => void;
 }
 
-const UserContext = React.createContext<ContextTypes | null>(null);
+const UserContext = createContext<ContextTypes | null>(null);
 
 //Provider Component
-const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const UserContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   //Define states
   const [userToken, setUserToken] = useState<string | null>(null);
   const [userData, setUserData] = useState<Product[]>();

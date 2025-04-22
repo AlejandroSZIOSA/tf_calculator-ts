@@ -1,10 +1,10 @@
-import React from "react";
+import { type FC } from "react";
 import { Link } from "react-router-dom";
 import { useUser_Ctx } from "../store/user-Context";
 import HomeHeader from "../components/navigation/HomeHeader";
 import HomeFooter from "../components/HomeFooter";
 
-const HomePage: React.FC = () => {
+const HomePage: FC = () => {
   const { user_Token } = useUser_Ctx();
 
   /* console.log(user_data); */

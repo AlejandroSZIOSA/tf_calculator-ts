@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { type FC, useState, useEffect } from "react";
 import Picker from "react-mobile-picker";
 import { useUser_Ctx } from "../../store/user-Context";
 import { CATEGORIES } from "../../data/static-data";

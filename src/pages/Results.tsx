@@ -1,6 +1,6 @@
-import React from "react";
+import { type FC } from "react";
 
-const ResultsPage: React.FC = () => {
+const ResultsPage: FC = () => {
   return (
     <>
       <h1>RESULTS PAGE</h1>

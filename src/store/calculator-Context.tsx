@@ -1,4 +1,10 @@
-import React, { useState, useContext } from "react";
+import {
+  type FC,
+  createContext,
+  type ReactNode,
+  useState,
+  useContext,
+} from "react";
 //3
 interface ContextTypes {
   selected_Category: string;
@@ -8,10 +14,10 @@ interface ContextTypes {
 }
 
 //1
-const CalculatorContext = React.createContext<ContextTypes | null>(null);
+const CalculatorContext = createContext<ContextTypes | null>(null);
 
 //2
-const CalculatorContextProvider: React.FC<{ children: React.ReactNode }> = ({
+const CalculatorContextProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
