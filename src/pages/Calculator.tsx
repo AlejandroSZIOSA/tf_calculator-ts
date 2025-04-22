@@ -25,7 +25,7 @@ const CalculatorPage: FC = () => {
       />
       <ProductPicker categorySelected={pickerCategoryValue.category} />
       <Link to="/calculator/results">
-        <button>Results</button>
+        <button>Calculate</button>
       </Link>
     </div>
   );

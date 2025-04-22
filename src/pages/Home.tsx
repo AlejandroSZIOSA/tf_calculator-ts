@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useUser_Ctx } from "../store/user-Context";
 import HomeHeader from "../components/navigation/HomeHeader";
+import HomeFooter from "../components/HomeFooter";
 
 const HomePage: React.FC = () => {
   const { user_Token } = useUser_Ctx();
@@ -12,10 +13,13 @@ const HomePage: React.FC = () => {
   return (
     <>
       <HomeHeader />
-      <h1>Home Page</h1>
-      <Link to="/calculator">
-        <button>Calculator</button>
-      </Link>
+      <main>
+        <h1>Home Page</h1>
+        <Link to="/calculator">
+          <button>Calculator</button>
+        </Link>
+      </main>
+      <HomeFooter />
     </>
   );
 };
