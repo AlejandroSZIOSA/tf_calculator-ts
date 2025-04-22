@@ -1,43 +1,73 @@
+import { FC, useState, useEffect } from "react";
 import Picker from "react-mobile-picker";
-import classes from "./ProductPicker.module.css";
+import { useUser_Ctx } from "../../store/user-Context";
+import { CATEGORIES } from "../../data/static-data";
 
-import { CATEGORIES } from "../../data/dummy-data";
-
-type CategoriesType = {
+type Product = {
   [key: string]: string[];
 };
 
-type Picker = {
-  pickerValue: { category: string };
-  setPickerValue: (v: { category: string }) => void;
-};
-
 type ParentProps = {
-  usePicker: Picker;
+  categorySelected: string;
 };
 
-const [cat1, cat2, cat3] = CATEGORIES; //Destructuring [{}]
+const ProductPicker: FC<ParentProps> = ({ categorySelected }) => {
+  const [pickerValue, setPickerValue] = useState({
+    product: "",
+  });
 
-const categories: CategoriesType = {
-  category: [cat1.name, cat2.name, cat3.name],
-};
+  const [names, setNames] = useState<string[] | undefined>([]);
 
-export default function ProductPicker(usePicker: ParentProps) {
-  const { pickerValue, setPickerValue } = usePicker.usePicker;
+  const { user_data } = useUser_Ctx();
+
+  useEffect(() => {
+    const test = extractProductsIds();
+
+    const getProductNames = () => {
+      const names: string[] = [];
+      if (test) {
+        for (let i = 0; i < test.length; i++) {
+          for (let j = 0; j < user_data!.length; j++) {
+            if (test[i] === user_data![j].id) {
+              names.push(user_data![j].name);
+              break;
+            }
+          }
+        }
+        console.log(names);
+        return names;
+      }
+    };
+    setNames(getProductNames());
+  }, [categorySelected]);
+
+  const extractProductsIds = () => {
+    const categoryData = CATEGORIES.find((c) => c.name === categorySelected);
+    if (categoryData) {
+      const { productsIds } = categoryData;
+      return productsIds;
+    }
+  };
+  console.log(extractProductsIds());
+
+  const products2: Product = {
+    product: names || [],
+  };
+
   return (
     <>
       <Picker
         value={pickerValue}
         onChange={setPickerValue}
         style={{
-          fontSize: "xxx-large",
+          fontSize: "x-large",
           background: "yellow",
           width: "100%",
         }}
       >
-        {Object.keys(categories).map((name) => (
+        {Object.keys(products2).map((name) => (
           <Picker.Column key={name} name={name}>
-            {categories[name].map((option) => (
+            {products2[name].map((option) => (
               <Picker.Item key={option} value={option}>
                 {option}
               </Picker.Item>
@@ -45,7 +75,9 @@ export default function ProductPicker(usePicker: ParentProps) {
           </Picker.Column>
         ))}
       </Picker>
-      <p>{pickerValue.category}</p>
+      <p>{pickerValue.product}</p>
     </>
   );
-}
+};
+
+export default ProductPicker;
