@@ -1,5 +1,5 @@
 import { type FC, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CategoryPicker from "../components/calculator/CategoryPicker";
 import ProductPicker from "../components/calculator/ProductPicker";
 import CalculateArea from "../components/calculator/CalculateArea";
@@ -18,16 +18,15 @@ const CalculatorPage: FC = () => {
   const { user_data } = useUser_Ctx();
 
   const [areaResult, setAreaResult] = useState<number>(0);
-
   const [isCalculateBtnDisabled, setIsCalculateBtnDisabled] =
     useState<boolean>(true);
-
   const [pickerCategoryValue, setPickerCategoryValue] = useState<Category>({
     category: "",
   });
   const [pickerProductValue, setPickerProductValue] = useState<Product>({
     product: "",
   });
+  const [productId, setproductId] = useState("");
 
   useEffect(() => {
     if (areaResult === 0) {
@@ -46,7 +45,12 @@ const CalculatorPage: FC = () => {
   }, [areaResult, pickerCategoryValue, pickerProductValue]);
 
   function handleCalculateBtn() {
-    navigate("/calculator/results");
+    navigate("/calculator/results", {
+      state: {
+        subTotalArea: areaResult,
+        productSelected: pickerProductValue.product,
+      },
+    });
   }
 
   if (!user_data) return <h1>NO USER DATA</h1>;
