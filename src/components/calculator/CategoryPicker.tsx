@@ -21,8 +21,8 @@ const categories: CategoriesType = {
   category: [cat1.name, cat2.name, cat3.name],
 };
 
-export default function CategoryPicker(usePicker: ParentProps) {
-  const { pickerCategoryValue, setPickerCategoryValue } = usePicker.usePicker;
+export default function CategoryPicker({ usePicker }: ParentProps) {
+  const { pickerCategoryValue, setPickerCategoryValue } = usePicker;
   return (
     <>
       <Picker

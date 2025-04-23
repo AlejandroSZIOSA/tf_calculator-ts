@@ -7,14 +7,22 @@ type Product = {
   [key: string]: string[];
 };
 
-type ParentProps = {
-  categorySelected: string;
+type UsePicker = {
+  pickerProductValue: { product: string };
+  setPickerProductValue: (v: { product: string }) => void;
 };
 
-const ProductPicker: FC<ParentProps> = ({ categorySelected }) => {
-  const [pickerValue, setPickerValue] = useState({
+type ParentProps = {
+  categorySelected: string;
+  usePicker: UsePicker;
+};
+
+const ProductPicker: FC<ParentProps> = ({ categorySelected, usePicker }) => {
+  /* const [pickerValue, setPickerValue] = useState({
     product: "",
-  });
+  }); */
+
+  const { pickerProductValue, setPickerProductValue } = usePicker;
 
   const [names, setNames] = useState<string[] | undefined>([]);
 
@@ -57,8 +65,8 @@ const ProductPicker: FC<ParentProps> = ({ categorySelected }) => {
   return (
     <>
       <Picker
-        value={pickerValue}
-        onChange={setPickerValue}
+        value={pickerProductValue}
+        onChange={setPickerProductValue}
         style={{
           fontSize: "x-large",
           background: "yellow",
@@ -75,7 +83,7 @@ const ProductPicker: FC<ParentProps> = ({ categorySelected }) => {
           </Picker.Column>
         ))}
       </Picker>
-      <p>{pickerValue.product}</p>
+      {/*  <p>{pickerValue.product}</p> */}
     </>
   );
 };
