@@ -2,6 +2,9 @@ import Picker from "react-mobile-picker";
 import classes from "./CategoryPicker.module.css";
 import { CATEGORIES } from "../../data/static-data";
 
+//NOTE: IMPLEMENTATION OF "React Mobile Picker" LIBRARY
+//https://www.npmjs.com/package/react-mobile-picker
+
 type CategoriesType = {
   [key: string]: string[];
 };
@@ -44,7 +47,6 @@ export default function CategoryPicker({ usePicker }: ParentProps) {
           </Picker.Column>
         ))}
       </Picker>
-      <p>{pickerCategoryValue.category}</p>
     </>
   );
 }

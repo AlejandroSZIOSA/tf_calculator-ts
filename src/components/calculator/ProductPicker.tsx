@@ -3,6 +3,9 @@ import Picker from "react-mobile-picker";
 import { useUser_Ctx } from "../../store/user-Context";
 import { CATEGORIES } from "../../data/static-data";
 
+//NOTE: IMPLEMENTATION OF "React Mobile Picker" LIBRARY
+//https://www.npmjs.com/package/react-mobile-picker
+
 type Product = {
   [key: string]: string[];
 };
@@ -18,10 +21,6 @@ type ParentProps = {
 };
 
 const ProductPicker: FC<ParentProps> = ({ categorySelected, usePicker }) => {
-  /* const [pickerValue, setPickerValue] = useState({
-    product: "",
-  }); */
-
   const { pickerProductValue, setPickerProductValue } = usePicker;
 
   const [names, setNames] = useState<string[] | undefined>([]);
@@ -58,7 +57,7 @@ const ProductPicker: FC<ParentProps> = ({ categorySelected, usePicker }) => {
   };
   console.log(extractProductsIds());
 
-  const products2: Product = {
+  const products: Product = {
     product: names || [],
   };
 
@@ -73,9 +72,9 @@ const ProductPicker: FC<ParentProps> = ({ categorySelected, usePicker }) => {
           width: "100%",
         }}
       >
-        {Object.keys(products2).map((name) => (
+        {Object.keys(products).map((name) => (
           <Picker.Column key={name} name={name}>
-            {products2[name].map((option) => (
+            {products[name].map((option) => (
               <Picker.Item key={option} value={option}>
                 {option}
               </Picker.Item>
