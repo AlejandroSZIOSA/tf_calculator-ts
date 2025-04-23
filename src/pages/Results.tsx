@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { useLocation } from "react-router-dom";
 import { useUser_Ctx } from "../store/user-Context";
 
-type Extract = [converted: number, unit: string];
+type Convert = [converted: number, unit: string];
 
 const ResultsPage: FC = () => {
   const location = useLocation();
@@ -18,12 +18,12 @@ const ResultsPage: FC = () => {
     return productData?.weightPerSquareMeter as number;
   }
 
-  function calculateTotalProduct(area: number, fn: () => number): Extract {
+  function calculateTotalProduct(area: number, fn: () => number): Convert {
     const totalProduct = area * fn();
-    return convertTotalSeeds(totalProduct);
+    return convertTotalProduct(totalProduct);
   }
 
-  function convertTotalSeeds(ts: number): Extract {
+  function convertTotalProduct(ts: number): Convert {
     let converted: number = 0;
     let unit: string = "";
     if (ts > 0 && ts < 1000) {
@@ -46,8 +46,6 @@ const ResultsPage: FC = () => {
     <>
       <h1>RESULTS PAGE</h1>
       <p>{subTotalArea}</p>
-      {/*  <p>{calculateTotalProduct(subTotalArea, getWeightPerSquareMeter)}</p> */}
-
       <p>
         {converted} -{unit}
       </p>
