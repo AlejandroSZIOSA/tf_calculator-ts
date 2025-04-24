@@ -40,6 +40,7 @@ export default function SignupForm() {
       //Login new user automatic after the user was created
       const loginData = (await post<LoginData>(
         ENDPOINTS.POST_USER,
+        "POST", //Method
         newUser
       )) as LoginData;
       const token: string = loginData.token;

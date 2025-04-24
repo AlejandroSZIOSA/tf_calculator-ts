@@ -8,22 +8,11 @@ import {
 import { post } from "../../utils/http";
 import ENDPOINTS from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
-
 import { type Data, type User } from "../../types/shared";
 
 type LoginFormProps = {
   handleUserData: (token: string) => void;
 };
-
-/* export type Data = {
-  token: string;
-  userId: string;
-}; */
-
-/* export type User = {
-  email: string;
-  password: string;
-}; */
 
 export default function LoginForm({ handleUserData }: LoginFormProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +52,11 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
     setError(null);
     setIsLoading(true);
     try {
-      const data = (await post<Data>(ENDPOINTS.POST_USER, user)) as Data;
+      const data = (await post<Data>(
+        ENDPOINTS.POST_USER,
+        "POST",
+        user
+      )) as Data;
       const token: string = data.token;
       handleUserData(token);
       setAreInputsLocked(true);
