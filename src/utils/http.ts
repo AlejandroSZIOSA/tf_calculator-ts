@@ -19,7 +19,7 @@ export async function get<T>(url: string, token: string) {
 
 type Credentials = { email: string; password: string };
 
-//OBJECTIVE: MAKE THIS FUNCTION MORE REUSABLE AND THEN REMOVE THE PUT FN
+//OBJECTIVE: MAKE THIS FUNCTION MORE REUSABLE AND THEN REMOVE THE "put()"
 //DONE: 1- ADD "METHOD" AS "PROP"
 //TODO: 2- ADD "FAIL VALIDATION CODES" FOR "LOGIN AND SIGNUP" ACTIONS
 export async function post<T>(url: string, method: string, user: Credentials) {
