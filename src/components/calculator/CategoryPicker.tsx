@@ -5,6 +5,9 @@ import { CATEGORIES } from "../../data/static-data";
 //NOTE: IMPLEMENTATION OF "React Mobile Picker" LIBRARY
 //https://www.npmjs.com/package/react-mobile-picker
 
+//OBJECTIVE: PASS AN OBJECT (name + id) INSTEAD ONE ARRAY OF STRINGS
+//TODO: CRETE A "TYPE OBJECT" INSTEAD AN STRING AS KEY VALUE
+
 type CategoriesType = {
   [key: string]: string[];
 };
@@ -18,10 +21,11 @@ type ParentProps = {
   usePicker: UsePicker;
 };
 
-const [cat1, cat2, cat3] = CATEGORIES; //Destructuring [{}]
+const [cat1, cat2, cat3, cat4] = CATEGORIES; //Destructuring category objects
 
+//Add categories to the object as picker needed
 const categories: CategoriesType = {
-  category: [cat1.name, cat2.name, cat3.name],
+  category: [cat1.name, cat2.name, cat3.name, cat4.name],
 };
 
 export default function CategoryPicker({ usePicker }: ParentProps) {
@@ -32,7 +36,7 @@ export default function CategoryPicker({ usePicker }: ParentProps) {
         value={pickerCategoryValue}
         onChange={setPickerCategoryValue}
         style={{
-          fontSize: "xxx-large",
+          fontSize: "xx-large",
           background: "yellow",
           width: "100%",
         }}
