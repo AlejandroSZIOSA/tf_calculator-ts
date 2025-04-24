@@ -13,12 +13,13 @@ const CalculateArea: FC<CalculateAreaProps> = ({ useAreaResult }) => {
   const length = useRef<HTMLInputElement>(null);
   const height = useRef<HTMLInputElement>(null);
 
-  const { areaResult, setAreaResult } = useAreaResult;
-
   const [isDisabled, setIsDisabled] = useState<Buttons>({
     setBtn: false,
     resetBtn: true,
   });
+  const [areInputsDisabled, setAreInputsDisabled] = useState<boolean>(false);
+
+  const { areaResult, setAreaResult } = useAreaResult;
 
   function handleSetValues() {
     const enteredLength = parseFloat(length.current!.value);
@@ -26,6 +27,7 @@ const CalculateArea: FC<CalculateAreaProps> = ({ useAreaResult }) => {
     if (enteredHeight && enteredLength) {
       setAreaResult(enteredLength * enteredHeight);
       setIsDisabled({ setBtn: true, resetBtn: false });
+      setAreInputsDisabled(true);
     }
   }
 
@@ -34,6 +36,7 @@ const CalculateArea: FC<CalculateAreaProps> = ({ useAreaResult }) => {
     length.current!.value = "";
     height.current!.value = "";
     setIsDisabled({ setBtn: false, resetBtn: true });
+    setAreInputsDisabled(false);
   }
 
   return (
@@ -41,8 +44,18 @@ const CalculateArea: FC<CalculateAreaProps> = ({ useAreaResult }) => {
       <h1>Area</h1>
       <div>
         <div>
-          <input type="number" placeholder="L" ref={length}></input>
-          <input type="number" placeholder="H" ref={height}></input>
+          <input
+            type="number"
+            disabled={areInputsDisabled}
+            placeholder="Length"
+            ref={length}
+          />
+          <input
+            type="number"
+            disabled={areInputsDisabled}
+            placeholder="Height"
+            ref={height}
+          />
         </div>
         <p>{areaResult}</p>
       </div>

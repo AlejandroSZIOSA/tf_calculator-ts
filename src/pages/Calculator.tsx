@@ -14,7 +14,6 @@ type Product = {
 };
 const CalculatorPage: FC = () => {
   const navigate = useNavigate();
-
   const { user_data } = useUser_Ctx();
 
   const [areaResult, setAreaResult] = useState<number>(0);
@@ -26,7 +25,6 @@ const CalculatorPage: FC = () => {
   const [pickerProductValue, setPickerProductValue] = useState<Product>({
     product: "",
   });
-  const [productId, setproductId] = useState("");
 
   useEffect(() => {
     if (areaResult === 0) {
