@@ -19,7 +19,8 @@ export async function get<T>(url: string, token: string) {
 
 type Credentials = { email: string; password: string };
 
-//TODO: ADD "METHOD" AS PROP
+//DONE: 1- ADD "METHOD" AS PROP
+//TODO: 2- ADD FAIL VALIDATION "CODES" FOR "LOGIN AND SIGNUP" ACTIONS
 export async function post<T>(url: string, method: string, user: Credentials) {
   const response = await fetch(url, {
     method: method,
@@ -29,6 +30,7 @@ export async function post<T>(url: string, method: string, user: Credentials) {
     body: JSON.stringify(user),
   });
 
+  //TODO
   if (!response.ok) {
     throw new Error("fail to login User");
   }
@@ -50,7 +52,7 @@ export async function put<T>(url: string, user: Credentials) {
     if (response.status === 422) {
       throw new Error("User already exists");
     }
-    throw new Error("fail to Sign Up User");
+    throw new Error("Fail to Sign Up User");
   }
 
   const data = response.json() as unknown; //"as unknown" no get error :) use It!
