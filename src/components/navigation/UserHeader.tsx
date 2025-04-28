@@ -4,13 +4,18 @@ import classes from "./UserHeader.module.css";
 
 const UserHeader: React.FC = () => {
   return (
-    <header className={classes.UserHeader}>
+    <header className={classes.header}>
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? classes.active : undefined)}
         end
       >
-        Back
+        <img
+          src="/src/assets/icons/back.svg"
+          width={25}
+          height={25}
+          alt="back_icon"
+        />
       </NavLink>
     </header>
   );

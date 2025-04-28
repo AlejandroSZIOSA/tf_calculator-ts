@@ -1,24 +1,7 @@
 .header {
-  max-width: 60rem;
-  margin: auto;
-  padding: 2rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.list {
-  display: flex;
-  gap: 1rem;
-}
-
-.list a {
-  text-decoration: none;
-  color: var(--color-primary-400);
-}
-
-.list a:hover,
-.list a.active {
-  color: var(--color-primary-800);
-  background-color: rgb(132, 132, 132);
-  /* use end in the JSX code */
+  position: sticky;
+  top: 0;
+  padding: 15px;
+  z-index: 1000;
+  background-color: #9d9d9d;
 }

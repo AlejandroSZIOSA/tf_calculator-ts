@@ -1,7 +1,11 @@
 .header {
-  padding: 2rem;
   display: flex;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  padding: 15px;
+  z-index: 1000;
+  background-color: #9d9d9d;
 }
 
 .list {

@@ -10,7 +10,12 @@ const CalculatorHeader: React.FC = () => {
         className={({ isActive }) => (isActive ? classes.active : undefined)}
         end
       >
-        Home
+        <img
+          src="/src/assets/icons/home.svg"
+          width={25}
+          height={25}
+          alt="home_icon"
+        />
       </NavLink>
     </header>
   );
