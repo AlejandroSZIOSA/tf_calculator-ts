@@ -1,4 +1,4 @@
-import { type FC, type ReactNode, MouseEvent } from "react";
+import { type FC, type ReactNode, type MouseEvent } from "react";
 import classes from "./SecondaryBtn.module.css";
 
 type SecondaryBtnProps = {

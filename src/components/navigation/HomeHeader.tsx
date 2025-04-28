@@ -20,8 +20,8 @@ const HomeHeader: FC = () => {
             <img
               src="/src/assets/icons/calculator.svg"
               onClick={handleClick}
-              width={25}
-              height={25}
+              width={28}
+              height={28}
             ></img>
           </div>
           <NavBar />

@@ -15,7 +15,7 @@ const NavBar_Test: FC = () => {
   function changeLockIcon(iconUrl: string) {
     return (
       <li className={classes.toggleMenu} onClick={toggleMenu}>
-        <img src={`${iconUrl}`} width={25} height={25} alt="lockIcon"></img>
+        <img src={`${iconUrl}`} width={28} height={28} alt="lockIcon"></img>
       </li>
     );
   }
