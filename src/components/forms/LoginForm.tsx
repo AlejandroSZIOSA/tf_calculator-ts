@@ -116,12 +116,14 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
             id="password"
             type={isPasswordShowing ? "text" : "password"}
             name="password"
+            maxLength={20}
             disabled={areInputsLocked} // check the login status here and disable the button accordingly  // fix: use useRef here to fix this error.  This is because useRef creates a mutable ref object that can be updated multiple times during the component's rendering phase. It's useful when some value needs to be referenced in the component's render function, but needs to be changed during updates.
             ref={password}
             required
           />
           <SecondaryBtn
             type="button"
+            variant="not-rounded"
             onClickFN={toggleShowPassword}
             isDisabled={areInputsLocked}
           >
@@ -130,7 +132,7 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
         </div>
 
         <div className={classes.lockButtonsContainer}>
-          <SecondaryBtn type="button" onClickFN={toggleLock}>
+          <SecondaryBtn type="button" variant="rounded" onClickFN={toggleLock}>
             {!areInputsLocked ? "Lock" : "Unlock"}
           </SecondaryBtn>
           <PrimaryBtn type="submit">Login</PrimaryBtn>

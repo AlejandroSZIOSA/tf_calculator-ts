@@ -16,7 +16,7 @@ const HomeHeader: FC = () => {
     <header className={classes.header}>
       {user_Token ? (
         <>
-          <div style={{ marginLeft: "180px" }}>
+          <div style={{ marginLeft: "185px" }}>
             <img
               src="/src/assets/icons/calculator.svg"
               onClick={handleClick}

@@ -21,13 +21,25 @@
 
 .menuItems ul li {
   display: block;
-  width: 100%;
+  padding: 5px;
+  color: black;
+  font-size: x-large;
+  background-color: aquamarine;
 }
 
 .NavLink {
-  display: block;
+  /* display: block;
   width: 100%;
+  padding: 5px; */
+
+  display: table-cell;
+  /* flex-direction: row; */
+  width: 400px;
+  /* align-items: center; */
   padding: 5px;
+  font-size: x-large;
+  /* text-align: center; */
+  background-color: aquamarine;
 }
 
 /* Menu Styles */
