@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { type Data, type User } from "../../types/shared";
 import classes from "./LoginForm.module.css";
 import PrimaryBtn from "../buttons/PrimaryBtn";
+import SecondaryBtn from "../buttons/SecondaryBtn";
 
 type LoginFormProps = {
   handleUserData: (token: string) => void;
@@ -84,7 +85,7 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
   //messages JSX conditionals
   let content: ReactNode;
 
-  if (!isLoading) {
+  if (isLoading) {
     content = <p>Login User...</p>;
   }
 
@@ -119,19 +120,19 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
             ref={password}
             required
           />
-          <button
+          <SecondaryBtn
             type="button"
-            disabled={areInputsLocked}
-            onClick={toggleShowPassword}
+            onClickFN={toggleShowPassword}
+            isDisabled={areInputsLocked}
           >
             {!isPasswordShowing ? "Show" : "Hide"}
-          </button>
+          </SecondaryBtn>
         </div>
 
         <div className={classes.lockButtonsContainer}>
-          <button type="button" onClick={toggleLock}>
+          <SecondaryBtn type="button" onClickFN={toggleLock}>
             {!areInputsLocked ? "Lock" : "Unlock"}
-          </button>
+          </SecondaryBtn>
           <PrimaryBtn type="submit">Login</PrimaryBtn>
         </div>
       </form>

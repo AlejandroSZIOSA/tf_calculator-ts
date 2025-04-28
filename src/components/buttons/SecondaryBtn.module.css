@@ -1,0 +1,15 @@
+.button {
+  padding: 0.75rem;
+  background-color: #000000;
+  color: white;
+  font-size: 1rem;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:enabled {
+  opacity: 1;
+}

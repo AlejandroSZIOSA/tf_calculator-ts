@@ -1,4 +1,4 @@
-import { FC, type ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
 import classes from "./PrimaryBtn.module.css";
 
 type PrimaryBtnPros = {
