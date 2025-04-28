@@ -2,20 +2,25 @@ import { type FC } from "react";
 import { useUser_Ctx } from "../store/user-Context";
 import HomeHeader from "../components/navigation/HomeHeader";
 import HomeFooter from "../components/HomeFooter";
-import classes from "./HomePage.module.css";
+import classes from "./Home.module.css";
 
 const HomePage: FC = () => {
   const { user_Token } = useUser_Ctx();
   console.log(user_Token);
 
   return (
-    <div>
+    <>
       <HomeHeader />
-      <main>
-        <h1>About Us</h1>
-      </main>
-      <HomeFooter />
-    </div>
+      <div className={classes.container}>
+        <main className={classes.main}>
+          <h1>About Us</h1>
+          <section className={classes.section}>
+            <p className={classes.paragraph}>About us .......</p>
+          </section>
+        </main>
+        <HomeFooter />
+      </div>
+    </>
   );
 };
 

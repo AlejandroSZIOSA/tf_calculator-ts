@@ -9,6 +9,8 @@ import { post } from "../../utils/http";
 import ENDPOINTS from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { type Data, type User } from "../../types/shared";
+import classes from "./LoginForm.module.css";
+import PrimaryBtn from "../buttons/PrimaryBtn";
 
 type LoginFormProps = {
   handleUserData: (token: string) => void;
@@ -82,7 +84,7 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
   //messages JSX conditionals
   let content: ReactNode;
 
-  if (isLoading) {
+  if (!isLoading) {
     content = <p>Login User...</p>;
   }
 
@@ -91,12 +93,12 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
   }
 
   return (
-    <div>
-      {content}
+    <div className={classes.container}>
       <form
         onSubmit={handleSubmit}
         style={{ display: "flex", flexDirection: "column" }}
       >
+        <label>Email</label>
         <input
           placeholder="Email"
           id="email"
@@ -106,7 +108,8 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
           ref={email}
           required
         />
-        <div>
+        <label>Password</label>
+        <div className={classes.passwordInputContainer}>
           <input
             placeholder="Password"
             id="password"
@@ -125,13 +128,14 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
           </button>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className={classes.lockButtonsContainer}>
           <button type="button" onClick={toggleLock}>
             {!areInputsLocked ? "Lock" : "Unlock"}
           </button>
-          <button type="submit">Login</button>
+          <PrimaryBtn type="submit">Login</PrimaryBtn>
         </div>
       </form>
+      {content}
     </div>
   );
 }

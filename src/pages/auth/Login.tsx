@@ -2,10 +2,9 @@ import React, { useState, type ReactNode } from "react";
 import { get } from "../../utils/http";
 import ENDPOINTS from "../../utils/constants";
 import { useUser_Ctx } from "../../store/user-Context";
-
 import { type Product } from "../../types/shared";
-
 import LoginForm from "../../components/forms/LoginForm";
+import classes from "./Login.module.css";
 
 //Data From Backend
 type RawData = {
@@ -18,13 +17,6 @@ type RawDataSeeds = {
   weightPerSquareMeter: number;
   createdAt: Date;
 };
-
-//Data will uses in Frontend
-/* export type Product = {
-  id: string;
-  name: string;
-  weightPerSquareMeter: number;
-}; */
 
 const LoginPage: React.FC = () => {
   const { set_Login_User, add_User_data } = useUser_Ctx();
@@ -80,8 +72,16 @@ const LoginPage: React.FC = () => {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <h1>Login Page</h1>
+    <div className={classes.container}>
+      <h1>Log-In</h1>
+      <div style={{ padding: "20px" }}>
+        <img
+          src="/src/assets/images/login.png"
+          width={220}
+          height={220}
+          alt="login_img"
+        />
+      </div>
       {content}
       <LoginForm handleUserData={handleUserData} />
     </div>

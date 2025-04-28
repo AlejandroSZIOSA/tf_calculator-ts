@@ -1,0 +1,18 @@
+.container {
+  padding: 10px;
+}
+
+.container button {
+  background-color: #30c42d;
+  /* padding: 12px; */
+  width: 110px;
+  height: 50px;
+  border-radius: 20px;
+  font-size: large;
+  color: white;
+}
+
+.container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
