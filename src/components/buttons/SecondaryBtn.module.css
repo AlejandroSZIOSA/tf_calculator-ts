@@ -5,6 +5,7 @@
   font-size: 1rem;
 }
 
+/* Overriding this class with css module */
 .buttonRounded {
   border-radius: 10px;
 }
