@@ -18,7 +18,7 @@ const SecondaryBtn: FC<SecondaryBtnProps> = ({
 }) => {
   return (
     <button
-      /* Dynamic Css module */
+      /* Dynamic Css module, simple and override classes */
       /*    className={
         variant === "rounded" ? classes.buttonRadius : classes.buttonRounded 
       } */
