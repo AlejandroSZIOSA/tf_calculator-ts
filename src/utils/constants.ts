@@ -3,4 +3,10 @@ const ENDPOINTS = {
   POST_USER: "http://localhost:8081/auth/login", //Login User
   PUT_NEW_USER: "http://localhost:8081/auth/signup", //Create User
 };
+
+export const ICON_SIZE_NAVBAR = {
+  width: "28px",
+  height: "28px",
+};
+
 export default ENDPOINTS;

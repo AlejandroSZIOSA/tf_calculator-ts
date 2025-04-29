@@ -1,4 +1,6 @@
 import { type FC, useRef, useState } from "react";
+import classes from "./CalculateArea.module.css";
+import CalculatorBtn from "../buttons/CalculatorBtn";
 
 type Buttons = {
   setBtn: boolean;
@@ -40,32 +42,41 @@ const CalculateArea: FC<CalculateAreaProps> = ({ useAreaResult }) => {
   }
 
   return (
-    <section>
-      <h1>Area</h1>
-      <div>
-        <div>
+    <section className={classes.section}>
+      <div className={classes.container}>
+        <h1>Area</h1>
+        <div className={classes.innerInputsContainer}>
           <input
             type="number"
             disabled={areInputsDisabled}
-            placeholder="Length"
+            placeholder="Length (m)"
             ref={length}
           />
+          <p>X</p>
           <input
             type="number"
             disabled={areInputsDisabled}
-            placeholder="Height"
+            placeholder="Height (m)"
             ref={height}
           />
         </div>
-        <p>{areaResult}</p>
+        <h2 style={{ fontSize: "35px" }}>
+          {areaResult} <span>m²</span>
+        </h2>
       </div>
-      <div>
-        <button onClick={handleResetValues} disabled={isDisabled.resetBtn}>
+      <div className={classes.buttonsContainer}>
+        <CalculatorBtn
+          onClickFN={handleResetValues}
+          isDisabled={isDisabled.resetBtn}
+        >
           Reset
-        </button>
-        <button onClick={handleSetValues} disabled={isDisabled.setBtn}>
+        </CalculatorBtn>
+        <CalculatorBtn
+          onClickFN={handleSetValues}
+          isDisabled={isDisabled.setBtn}
+        >
           set
-        </button>
+        </CalculatorBtn>
       </div>
     </section>
   );

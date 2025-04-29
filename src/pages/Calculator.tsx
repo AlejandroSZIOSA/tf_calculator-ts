@@ -4,6 +4,7 @@ import CategoryPicker from "../components/calculator/CategoryPicker";
 import ProductPicker from "../components/calculator/ProductPicker";
 import CalculateArea from "../components/calculator/CalculateArea";
 import { useUser_Ctx } from "../store/user-Context";
+import classes from "./Calculator.module.css";
 
 type Category = {
   category: string;
@@ -54,11 +55,10 @@ const CalculatorPage: FC = () => {
   if (!user_data) return <h1>NO USER DATA</h1>;
 
   return (
-    <div>
-      <h2>Product Calculator</h2>
+    <div className={classes.container}>
+      <h1 className={classes.title}>Calculator</h1>
       <CalculateArea useAreaResult={{ areaResult, setAreaResult }} />
 
-      <p>{areaResult}</p>
       <CategoryPicker
         usePicker={{ pickerCategoryValue, setPickerCategoryValue }}
       />

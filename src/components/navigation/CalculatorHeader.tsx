@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./CalculatorHeader.module.css";
+import { ICON_SIZE_NAVBAR } from "../../utils/constants";
 
 const CalculatorHeader: React.FC = () => {
   return (
@@ -12,8 +13,8 @@ const CalculatorHeader: React.FC = () => {
       >
         <img
           src="/src/assets/icons/home.svg"
-          width={25}
-          height={25}
+          width={ICON_SIZE_NAVBAR.width}
+          height={ICON_SIZE_NAVBAR.height}
           alt="home_icon"
         />
       </NavLink>
