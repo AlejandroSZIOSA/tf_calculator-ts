@@ -59,11 +59,10 @@ const CalculatorPage: FC = () => {
     <div className={classes.container}>
       <h1 className={classes.title}>Calculator</h1>
       <CalculateArea useAreaResult={{ areaResult, setAreaResult }} />
-      <h2 className={classes.chooseMessage}>Choose category and product</h2>
+      <p className={classes.chooseMessage}>Choose category and product</p>
       <CategoryPicker
         usePicker={{ pickerCategoryValue, setPickerCategoryValue }}
       />
-
       <p className={classes.selectedItem}>{pickerCategoryValue.category}</p>
 
       <ProductPicker

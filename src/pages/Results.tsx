@@ -1,6 +1,7 @@
 import { type FC } from "react";
 import { useLocation } from "react-router-dom";
 import { useUser_Ctx } from "../store/user-Context";
+import classes from "./Results.module.css";
 
 type Convert = [converted: number, unit: string];
 
@@ -43,14 +44,34 @@ const ResultsPage: FC = () => {
   }
 
   return (
-    <>
-      <h1>RESULTS PAGE</h1>
-      <p>{subTotalArea}</p>
-      <p>
-        {converted} -{unit}
-      </p>
-      <p>{productSelected}</p>
-    </>
+    <div className={classes.container}>
+      <h1 className={classes.title}>Result</h1>
+      <p className={classes.text}>For</p>
+      <div className={classes.resultContainer}>
+        <div className={classes.numberContainer}>
+          <p>{subTotalArea}</p>
+        </div>
+        <div className={classes.unitContainer}>
+          <p>m2</p>
+        </div>
+      </div>
+      <p className={classes.text}>You will need</p>
+      <div className={classes.resultContainer}>
+        <div className={classes.numberContainer}>
+          <p>{converted}</p>
+        </div>
+        <div className={classes.unitContainer}>
+          <p>{unit}</p>
+        </div>
+      </div>
+      <p className={classes.text}>Of</p>
+      <div className={classes.productContainer}>
+        <p>{productSelected}</p>
+      </div>
+      <div className={classes.imageContainer}>
+        <img src="/src/assets/images/tf_logo.png" width={120} height={120} />
+      </div>
+    </div>
   );
 };
 
