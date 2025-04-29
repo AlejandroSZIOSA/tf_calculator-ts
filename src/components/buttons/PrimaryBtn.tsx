@@ -4,13 +4,25 @@ import classes from "./PrimaryBtn.module.css";
 type PrimaryBtnPros = {
   children: ReactNode;
   type?: "submit" | "reset" | "button";
+  isDisabled?: boolean;
+  onClickFn?: () => void;
 };
 
-const PrimaryBtn: FC<PrimaryBtnPros> = ({ children, type }) => {
+const PrimaryBtn: FC<PrimaryBtnPros> = ({
+  children,
+  type,
+  isDisabled,
+  onClickFn,
+}) => {
   return (
-    <div className={classes.container}>
-      <button type={type}>{children}</button>
-    </div>
+    <button
+      className={classes.button}
+      type={type}
+      disabled={isDisabled}
+      onClick={onClickFn}
+    >
+      {children}
+    </button>
   );
 };
 

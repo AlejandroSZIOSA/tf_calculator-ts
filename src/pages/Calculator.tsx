@@ -5,6 +5,7 @@ import ProductPicker from "../components/calculator/ProductPicker";
 import CalculateArea from "../components/calculator/CalculateArea";
 import { useUser_Ctx } from "../store/user-Context";
 import classes from "./Calculator.module.css";
+import PrimaryBtn from "../components/buttons/PrimaryBtn";
 
 type Category = {
   category: string;
@@ -58,23 +59,28 @@ const CalculatorPage: FC = () => {
     <div className={classes.container}>
       <h1 className={classes.title}>Calculator</h1>
       <CalculateArea useAreaResult={{ areaResult, setAreaResult }} />
-
+      <h2 className={classes.chooseMessage}>Choose category and product</h2>
       <CategoryPicker
         usePicker={{ pickerCategoryValue, setPickerCategoryValue }}
       />
 
-      <p>{pickerCategoryValue.category}</p>
+      <p className={classes.selectedItem}>{pickerCategoryValue.category}</p>
 
       <ProductPicker
         usePicker={{ pickerProductValue, setPickerProductValue }}
         categorySelected={pickerCategoryValue.category}
       />
 
-      <p>{pickerProductValue.product}</p>
-
-      <button disabled={isCalculateBtnDisabled} onClick={handleCalculateBtn}>
-        Calculate
-      </button>
+      <p className={classes.selectedItem}>{pickerProductValue.product}</p>
+      <div style={{ paddingTop: "30px" }}>
+        <PrimaryBtn
+          type="button"
+          isDisabled={isCalculateBtnDisabled}
+          onClickFn={handleCalculateBtn}
+        >
+          Calculate
+        </PrimaryBtn>
+      </div>
     </div>
   );
 };

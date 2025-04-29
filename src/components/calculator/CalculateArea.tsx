@@ -1,6 +1,6 @@
 import { type FC, useRef, useState } from "react";
-import classes from "./CalculateArea.module.css";
 import CalculatorBtn from "../buttons/CalculatorBtn";
+import classes from "./CalculateArea.module.css";
 
 type Buttons = {
   setBtn: boolean;
@@ -44,7 +44,7 @@ const CalculateArea: FC<CalculateAreaProps> = ({ useAreaResult }) => {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
-        <h1>Area</h1>
+        <p className={classes.title}>Area</p>
         <div className={classes.innerInputsContainer}>
           <input
             type="number"

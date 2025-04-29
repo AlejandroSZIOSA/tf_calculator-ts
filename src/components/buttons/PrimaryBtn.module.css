@@ -1,8 +1,4 @@
-.container {
-  padding-top: 120px;
-}
-
-.container button {
+.button {
   background-color: #30c42d;
   width: 110px;
   height: 50px;
@@ -12,7 +8,11 @@
   color: white;
 }
 
-.container button:disabled {
+.button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.button:enabled {
+  opacity: 1;
 }

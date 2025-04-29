@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   width: 400px;
-  height: 250px;
+  height: 240px;
   margin: 10px;
   text-align: center;
   color: white;
@@ -13,6 +13,10 @@
   width: 380px;
   height: fit-content;
   /* background-color: bisque; */
+}
+
+.title {
+  font-size: xx-large;
 }
 
 .innerInputsContainer {
@@ -38,6 +42,6 @@
 .buttonsContainer {
   display: flex;
   width: 100%;
-  padding-top: 20px;
+  padding-top: 10px;
   justify-content: space-around;
 }

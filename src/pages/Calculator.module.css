@@ -12,3 +12,13 @@
   text-align: center;
   background-color: #a3b18a;
 }
+
+.chooseMessage {
+  padding: 15px 0px 15px 0px;
+}
+
+.selectedItem {
+  padding: 10px;
+  font-size: 25px;
+  color: #588157;
+}

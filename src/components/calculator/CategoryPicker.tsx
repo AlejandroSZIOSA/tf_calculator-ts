@@ -1,5 +1,4 @@
 import Picker from "react-mobile-picker";
-import classes from "./CategoryPicker.module.css";
 import { CATEGORIES } from "../../data/static-data";
 
 //NOTE: IMPLEMENTATION OF "React Mobile Picker" LIBRARY
@@ -37,8 +36,8 @@ export default function CategoryPicker({ usePicker }: ParentProps) {
         onChange={setPickerCategoryValue}
         style={{
           fontSize: "xx-large",
-          background: "yellow",
-          width: "100%",
+          background: "#aad4a9",
+          width: "93%",
         }}
       >
         {Object.keys(categories).map((name) => (

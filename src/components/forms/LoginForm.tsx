@@ -135,7 +135,9 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
           <SecondaryBtn type="button" variant="rounded" onClickFN={toggleLock}>
             {!areInputsLocked ? "Lock" : "Unlock"}
           </SecondaryBtn>
-          <PrimaryBtn type="submit">Login</PrimaryBtn>
+          <div style={{ paddingTop: "120px" }}>
+            <PrimaryBtn type="submit">Login</PrimaryBtn>
+          </div>
         </div>
       </form>
       {content}

@@ -68,8 +68,8 @@ const ProductPicker: FC<ParentProps> = ({ categorySelected, usePicker }) => {
         onChange={setPickerProductValue}
         style={{
           fontSize: "x-large",
-          background: "yellow",
-          width: "100%",
+          background: "#c2f5c1",
+          width: "93%",
         }}
       >
         {Object.keys(products).map((name) => (
