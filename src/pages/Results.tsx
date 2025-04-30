@@ -52,7 +52,7 @@ const ResultsPage: FC = () => {
           <p>{subTotalArea}</p>
         </div>
         <div className={classes.unitContainer}>
-          <p>m2</p>
+          <p>m²</p>
         </div>
       </div>
       <p className={classes.text}>You will need</p>

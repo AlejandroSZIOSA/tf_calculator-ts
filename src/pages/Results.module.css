@@ -31,7 +31,7 @@
   width: 380px;
   height: 60px;
   border-radius: 10px;
-  background-color: #54b886;
+  background-color: #344e41;
 }
 
 .numberContainer p {
@@ -62,13 +62,14 @@
   width: 380px;
   height: 80px;
   border-radius: 10px;
-  background-color: rgb(216, 255, 77);
+  background-color: #588157;
 }
 
 .productContainer p {
   font-size: xx-large;
+  color: #faff00;
 }
 
 .imageContainer {
-  padding-top: 50px;
+  padding-top: 90px;
 }

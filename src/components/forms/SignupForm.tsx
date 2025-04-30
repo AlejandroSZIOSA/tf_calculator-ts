@@ -4,6 +4,9 @@ import { put, post } from "../../utils/http";
 import { type User, type Data as LoginData } from "../../types/shared";
 import { useNavigate } from "react-router-dom";
 import { useUser_Ctx } from "../../store/user-Context";
+import classes from "./SignupForm.module.css";
+import SecondaryBtn from "../buttons/SecondaryBtn";
+import PrimaryBtn from "../buttons/PrimaryBtn";
 
 //backend returns this type of data in this case
 type Data = {
@@ -23,7 +26,6 @@ export default function SignupForm() {
     useState<boolean>(false);
 
   const { set_Login_User } = useUser_Ctx();
-
   const navigate = useNavigate();
 
   async function signUpUser(newUser: User) {
@@ -65,7 +67,7 @@ export default function SignupForm() {
 
     //Confirm the password
     if (enteredPassword !== enteredConfirmPassword) {
-      setError("Passwords does'nt not match");
+      setError("Passwords does'nt match");
       return;
     }
 
@@ -82,23 +84,33 @@ export default function SignupForm() {
   let content: ReactNode;
 
   if (isLoading) {
-    content = <p>Sign Up new User...</p>;
+    content = <p className={classes.formMessages}>Creating new User...</p>;
   }
   if (error) {
-    content = <p>Error: {error}</p>;
+    content = (
+      /* using two classes */
+      <p className={`${classes.formMessages} ${classes.errorMessage}`}>
+        Error: {error}
+      </p>
+    );
   }
   if (message) {
-    content = <p>{message}</p>;
+    content = (
+      <p className={`${classes.formMessages} ${classes.goodMessage}`}>
+        {message}
+      </p>
+    );
   }
 
   return (
-    <div>
-      {content}
+    <div className={classes.container}>
       <form
         onSubmit={handleSubmit}
         style={{ display: "flex", flexDirection: "column" }}
       >
+        <label>Email</label>
         <input
+          className={classes.input}
           placeholder="Email"
           id="email"
           type="email"
@@ -106,33 +118,52 @@ export default function SignupForm() {
           ref={email}
           required
         />
-        <div>
-          <input
-            placeholder="Password"
-            id="password"
-            type={isPasswordShowing ? "text" : "password"}
-            name="password"
-            ref={password}
-            required
-          />
-          <button type="button" onClick={toggleShowPassword}>
-            {!isPasswordShowing ? "Show" : "Hide"}
-          </button>
+        <div className={classes.passwordContainer}>
+          <label>Password</label>
+          <div className={classes.passwordInnerContainer}>
+            <input
+              className={classes.input}
+              placeholder="Password"
+              id="password"
+              type={isPasswordShowing ? "text" : "password"}
+              name="password"
+              ref={password}
+              required
+            />
+            <SecondaryBtn
+              type="button"
+              variant="not-rounded"
+              onClickFN={toggleShowPassword}
+            >
+              {!isPasswordShowing ? "Show" : "Hide"}
+            </SecondaryBtn>
+          </div>
         </div>
-        <div>
-          <input
-            placeholder="Re-Password"
-            id="re-password"
-            type={isConfirmPasswordShowing ? "text" : "password"}
-            name="re-password"
-            ref={confirmedPassword}
-            required
-          />
-          <button type="button" onClick={toggleShowConfirmPassword}>
-            {!isConfirmPasswordShowing ? "Show" : "Hide"}
-          </button>
+        <div className={classes.passwordContainer}>
+          <label>Confirm Password</label>
+          <div className={classes.passwordInnerContainer}>
+            <input
+              className={classes.input}
+              placeholder="Re-Password"
+              id="re-password"
+              type={isConfirmPasswordShowing ? "text" : "password"}
+              name="re-password"
+              ref={confirmedPassword}
+              required
+            />
+            <SecondaryBtn
+              type="button"
+              variant="not-rounded"
+              onClickFN={toggleShowConfirmPassword}
+            >
+              {!isConfirmPasswordShowing ? "Show" : "Hide"}
+            </SecondaryBtn>
+          </div>
         </div>
-        <button type="submit">Sign-Up</button>
+        {content}
+        <div className={classes.createBtnContainer}>
+          <PrimaryBtn type="submit">Create</PrimaryBtn>
+        </div>
       </form>
     </div>
   );

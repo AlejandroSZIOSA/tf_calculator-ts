@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 380px;
+  /* background-color: aquamarine; */
+}
+
+container form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.container form label {
+  text-align: center;
+  padding: 5px 0px 5px 0px;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.passwordContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.passwordInnerContainer {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+}
+
+.createBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.formMessages {
+  font-size: x-large;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.goodMessage {
+  color: green;
+}
