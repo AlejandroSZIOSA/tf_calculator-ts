@@ -86,11 +86,15 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
   let content: ReactNode;
 
   if (isLoading) {
-    content = <p>Login User...</p>;
+    content = <p className={classes.formMessages}>Login User...</p>;
   }
 
   if (error) {
-    content = <p>Error: {error}</p>;
+    content = (
+      <p className={`${classes.formMessages} ${classes.errorMessage}`}>
+        Error: {error}
+      </p>
+    );
   }
 
   return (

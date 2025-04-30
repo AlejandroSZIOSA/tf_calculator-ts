@@ -38,3 +38,11 @@
   height: 140px;
   /* background-color: aqua; */
 }
+
+.formMessages {
+  font-size: x-large;
+}
+
+.errorMessage {
+  color: red;
+}
