@@ -1,4 +1,4 @@
-import React, { useState, type ReactNode } from "react";
+import { type FC, useState, type ReactNode } from "react";
 import { get } from "../../utils/http";
 import ENDPOINTS from "../../utils/constants";
 import { useUser_Ctx } from "../../store/user-Context";
@@ -18,7 +18,7 @@ type RawDataSeeds = {
   createdAt: Date;
 };
 
-const LoginPage: React.FC = () => {
+const LoginPage: FC = () => {
   const { set_Login_User, add_User_data } = useUser_Ctx();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

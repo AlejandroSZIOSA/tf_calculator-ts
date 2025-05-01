@@ -12,7 +12,7 @@ const HomePage: FC = () => {
     <>
       <HomeHeader />
       <div className={classes.container}>
-        <main className={classes.main}>
+        <main className={classes.innerContainer}>
           <h1>About Us</h1>
           <section className={classes.section}>
             {/*  <p className={classes.paragraph}>About us .......</p> */}

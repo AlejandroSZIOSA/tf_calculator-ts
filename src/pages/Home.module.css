@@ -7,7 +7,7 @@
   justify-content: space-between;
 }
 
-.main {
+.innerContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,17 +20,19 @@
   background-color: #a3b18a;
 }
 
+/* NOTE:Use this for long text paragraph */
 .section {
-  height: 600px;
+  height: 650px;
   width: 400px;
   background-color: #aad4a9;
   border: 2px solid black;
-  padding: 20px;
-  overflow-wrap: break-word;
+  /* padding: 20px; */
+  /* overflow-wrap: break-word; */
   text-align: center;
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
+/* NOTE:Use this for long text paragraph */
 /* .paragraphLongText {
   padding: 10px;
   white-space: normal;
@@ -38,11 +40,11 @@
   overflow-wrap: break-word;
   text-align: left;
 } */
-.main span {
+.innerContainer span {
   font-size: 25px;
 }
 
-.main p {
-  font-size: 45px;
-  margin-top: 120px;
+.innerContainer p {
+  font-size: 50px;
+  margin-top: 160px;
 }

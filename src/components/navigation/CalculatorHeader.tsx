@@ -1,9 +1,9 @@
-import React from "react";
+import { type FC } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./CalculatorHeader.module.css";
 import { ICON_SIZE_NAVBAR } from "../../utils/constants";
 
-const CalculatorHeader: React.FC = () => {
+const CalculatorHeader: FC = () => {
   return (
     <header className={classes.header}>
       <NavLink

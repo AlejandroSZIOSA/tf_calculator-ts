@@ -1,8 +1,8 @@
-import React from "react";
+import { type FC } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./UserHeader.module.css";
 
-const UserHeader: React.FC = () => {
+const UserHeader: FC = () => {
   return (
     <header className={classes.header}>
       <NavLink
