@@ -15,7 +15,17 @@ const HomePage: FC = () => {
         <main className={classes.main}>
           <h1>About Us</h1>
           <section className={classes.section}>
-            <p className={classes.paragraph}>About us .......</p>
+            {/*  <p className={classes.paragraph}>About us .......</p> */}
+            <img
+              src="/src/assets/images/LogoTF.png"
+              width={300}
+              height={100}
+              alt="login_img"
+            />
+            <a style={{ color: "blue" }} href="https://turfquick.com/">
+              <span>Homepage</span>
+            </a>
+            <p>Grass Calculator</p>
           </section>
         </main>
         <HomeFooter />

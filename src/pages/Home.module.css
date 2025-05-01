@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 875px;
+  height: 872px;
   background-color: #eaf7f3;
   align-items: center;
   justify-content: space-between;
@@ -31,10 +31,18 @@
   margin-top: 60px;
 }
 
-.paragraph {
+/* .paragraphLongText {
   padding: 10px;
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
   text-align: left;
+} */
+.main span {
+  font-size: 25px;
+}
+
+.main p {
+  font-size: 45px;
+  margin-top: 120px;
 }

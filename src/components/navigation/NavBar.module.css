@@ -12,7 +12,7 @@
 
 .menuItems {
   display: none;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #7d7d7d;
 }
 
 .menuItems.open {
@@ -22,36 +22,15 @@
 .menuItems ul li {
   display: block;
   padding: 5px;
-  color: black;
+  color: brown;
   font-size: x-large;
-  background-color: aquamarine;
+  /*  background-color: aquamarine; */
 }
 
 .NavLink {
-  /* display: block;
-  width: 100%;
-  padding: 5px; */
-
+  color: brown;
   display: table-cell;
-  /* flex-direction: row; */
   width: 400px;
-  /* align-items: center; */
   padding: 5px;
   font-size: x-large;
-  /* text-align: center; */
-  background-color: aquamarine;
 }
-
-/* Menu Styles */
-/* .menu {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.menu li a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.2rem;
-}
- */
