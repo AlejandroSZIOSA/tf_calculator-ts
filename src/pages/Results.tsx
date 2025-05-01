@@ -1,7 +1,8 @@
 import { type FC } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useUser_Ctx } from "../store/user-Context";
 import classes from "./Results.module.css";
+import PrimaryBtn from "../components/buttons/PrimaryBtn";
 
 type Convert = [converted: number, unit: string];
 
@@ -13,6 +14,8 @@ const ResultsPage: FC = () => {
     subTotalArea,
     getWeightPerSquareMeter
   );
+
+  const navigate = useNavigate();
 
   function getWeightPerSquareMeter(): number {
     const productData = user_data?.find((p) => p.name === productSelected);
@@ -45,7 +48,7 @@ const ResultsPage: FC = () => {
 
   return (
     <div className={classes.container}>
-      <h1 className={classes.title}>Result</h1>
+      <h1 className={classes.title}>Results</h1>
       <p className={classes.text}>For</p>
       <div className={classes.resultContainer}>
         <div className={classes.numberContainer}>
@@ -70,6 +73,11 @@ const ResultsPage: FC = () => {
       </div>
       <div className={classes.imageContainer}>
         <img src="/src/assets/images/tf_logo.png" width={120} height={120} />
+      </div>
+      <div className={classes.homeBtnContainer}>
+        <PrimaryBtn type="button" onClickFn={() => navigate("/")}>
+          To home
+        </PrimaryBtn>
       </div>
     </div>
   );
