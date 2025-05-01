@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import { useUser_Ctx } from "../../store/user-Context";
 import { useNavigate } from "react-router-dom";
 import classes from "./HomeHeader.module.css";
+import { ICON_SIZE_NAVBAR } from "../../utils/constants";
 
 const HomeHeader: FC = () => {
   const { user_Token } = useUser_Ctx();
@@ -20,8 +21,8 @@ const HomeHeader: FC = () => {
             <img
               src="/src/assets/icons/calculator.svg"
               onClick={handleClick}
-              width={28}
-              height={28}
+              width={ICON_SIZE_NAVBAR.width}
+              height={ICON_SIZE_NAVBAR.height}
             ></img>
           </div>
           <NavBar />

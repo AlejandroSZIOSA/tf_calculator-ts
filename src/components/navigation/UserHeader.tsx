@@ -1,6 +1,7 @@
 import { type FC } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./UserHeader.module.css";
+import { ICON_SIZE_NAVBAR } from "../../utils/constants";
 
 const UserHeader: FC = () => {
   return (
@@ -12,8 +13,8 @@ const UserHeader: FC = () => {
       >
         <img
           src="/src/assets/icons/back.svg"
-          width={25}
-          height={25}
+          width={ICON_SIZE_NAVBAR.width}
+          height={ICON_SIZE_NAVBAR.height}
           alt="back_icon"
         />
       </NavLink>

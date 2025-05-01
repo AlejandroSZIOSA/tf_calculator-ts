@@ -2,6 +2,7 @@ import { type ReactNode, type FC, useState } from "react";
 import { useUser_Ctx } from "../../store/user-Context";
 import { NavLink } from "react-router-dom";
 import classes from "./NavBar.module.css";
+import { ICON_SIZE_NAVBAR } from "../../utils/constants";
 const NavBar_Test: FC = () => {
   const { set_LogOut_User, user_Token } = useUser_Ctx();
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,12 @@ const NavBar_Test: FC = () => {
   function changeLockIcon(iconUrl: string) {
     return (
       <li className={classes.toggleMenu} onClick={toggleMenu}>
-        <img src={`${iconUrl}`} width={28} height={28} alt="lockIcon"></img>
+        <img
+          src={`${iconUrl}`}
+          width={ICON_SIZE_NAVBAR.width}
+          height={ICON_SIZE_NAVBAR.height}
+          alt="lockIcon"
+        ></img>
       </li>
     );
   }

@@ -79,7 +79,6 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
   }
 
   const toggleLock = () => setAreInputsLocked(!areInputsLocked);
-
   const toggleShowPassword = () => setIsPasswordShowing(!isPasswordShowing);
 
   //messages JSX conditionals
@@ -88,7 +87,6 @@ export default function LoginForm({ handleUserData }: LoginFormProps) {
   if (isLoading) {
     content = <p className={classes.formMessages}>Login User...</p>;
   }
-
   if (error) {
     content = (
       <p className={`${classes.formMessages} ${classes.errorMessage}`}>
